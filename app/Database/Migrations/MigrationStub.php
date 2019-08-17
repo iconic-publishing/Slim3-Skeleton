@@ -22,27 +22,9 @@ class $className extends $baseClassName {
             $table->increments('id');
             $table->timestamps();
         });
-
-        /* START
-        Remove if creating a new table.
-        Keep if adding to an existing table
-        */
-        $this->schema->table('', function (Blueprint $table) {
-
-        });
-        /* END */
     }
 
     public function down() {
-        /* START
-        Remove if creating a new table.
-        Keep if adding to an existing table
-        */
-        $this->schema->table('', function (Blueprint $table) {
-
-        });
-        /* END */
-
         $this->schema->drop('');
     }
 	
