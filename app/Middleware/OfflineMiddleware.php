@@ -15,7 +15,7 @@ Change Request ID:
 namespace Base\Middleware;
 
 use Base\{
-	Constructor\BaseConstructor
+    Constructor\BaseConstructor
 };
 use Psr\Http\Message\{
     ServerRequestInterface as Request,

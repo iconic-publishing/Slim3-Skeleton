@@ -15,8 +15,8 @@ Change Request ID:
 namespace Base\Middleware;
 
 use Base\{
-	Constructor\BaseConstructor,
-	Helpers\Session
+    Constructor\BaseConstructor,
+    Helpers\Session
 };
 use Psr\Http\Message\{
     ServerRequestInterface as Request,
