@@ -15,22 +15,22 @@ Change Request ID:
 namespace Base\Auth;
 
 use Base\{
-	Models\User\User,
-	Helpers\Session
+    Models\User\User,
+    Helpers\Session
 };
 
 class Auth {
 	
     public function user() {
-		return User::find(Session::get('user'));
+        return User::find(Session::get('user'));
     }
 
     public function check() {
-		return Session::exists('user');
+        return Session::exists('user');
     }
 
     public function logout() {
-		Session::delete('user');
+        Session::delete('user');
     }
 	
 }
