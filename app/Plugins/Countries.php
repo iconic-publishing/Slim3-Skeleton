@@ -16,15 +16,15 @@ namespace Base\Plugins;
 
 class Countries {
 	
-	public static function get($key = 'alpha2', $request = 'name') {
+    public static function get($key = 'alpha2', $request = 'name') {
         $support = [
-			'alpha2', 
-			'alpha3', 
-			'num', 
-			'isd', 
-			'name', 
-			'continent'
-		];
+            'alpha2', 
+            'alpha3', 
+            'num', 
+            'isd', 
+            'name', 
+            'continent'
+        ];
 
         if(!in_array($key, $support)) {
             $key = null;
@@ -35,7 +35,7 @@ class Countries {
         }
 
         $result = [];
-		
+
         foreach(self::$countries as $k => $country) {
             if($key) {
                 $result[$country[$key]] = $country[$request];
@@ -43,7 +43,7 @@ class Countries {
                 $result[] = $country[$request];
             }
         }
-		
+
         return $result;
     }
 	
