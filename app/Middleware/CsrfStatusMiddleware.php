@@ -24,13 +24,11 @@ class CsrfStatusMiddleware extends BaseConstructor {
 	
     public function __invoke(Request $request, Response $response, Callable $next) {
         if($request->getAttribute('csrf_status') === false) {
-			$this->flash->addMessage('error', $this->config->get('messages.csrf.error'));
-			return $response->withRedirect($_SERVER['HTTP_REFERER']);
-		}
+            $this->flash->addMessage('error', $this->config->get('messages.csrf.error'));
+            return $response->withRedirect($_SERVER['HTTP_REFERER']);
+        }
 
-        $response = $next($request, $response);
-		
-        return $response;
+        return $next($request, $response);
     }
 	
 }
