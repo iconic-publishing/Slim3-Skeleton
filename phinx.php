@@ -17,7 +17,8 @@ require_once __DIR__ . '/bootstrap/app.php';
 return [
  	
 	'paths' => [
-		'migrations' => 'database/migrations'
+		'migrations' => 'database/migrations',
+		'seeds' => 'database/seeds'
 	],
 	
 	'migration_base_class' => 'Base\Database\Migrations\Migration',
