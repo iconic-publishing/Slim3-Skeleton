@@ -15,11 +15,11 @@ Change Request ID:
 namespace Base\Controllers\Auth;
 
 use Base\{
-	Constructor\BaseConstructor,
-	Validation\Forms\Auth\AuthForm,
-	Models\User\User,
-	Services\Mail\Recover,
-	Helpers\Session
+    Constructor\BaseConstructor,
+    Validation\Forms\Auth\AuthForm,
+    Models\User\User,
+    Services\Mail\Recover,
+    Helpers\Session
 };
 use Psr\Http\Message\{
     ServerRequestInterface as Request,
@@ -28,46 +28,46 @@ use Psr\Http\Message\{
 
 class AuthRecoverPasswordController extends BaseConstructor {
 	
-	public function getRecoverPassword(Request $request, Response $response) {
+    public function getRecoverPassword(Request $request, Response $response) {
         return $this->view->render($response, 'auth/recover-password.php');
     }
 	
-	public function postRecoverPassword(Request $request, Response $response) {
-		$validation = $this->validator->validate($request, AuthForm::recoverPasswordRules());
+    public function postRecoverPassword(Request $request, Response $response) {
+        $validation = $this->validator->validate($request, AuthForm::recoverPasswordRules());
 
-		if($validation->fails()) {
-			$this->flash->addMessage('error', $this->config->get('messages.recover.required'));
-			return $response->withRedirect($this->router->pathFor('getRecoverPassword'));
-		}
+        if($validation->fails()) {
+            $this->flash->addMessage('error', $this->config->get('messages.recover.required'));
+            return $response->withRedirect($this->router->pathFor('getRecoverPassword'));
+        }
 
-		$email_address = $request->getParam('email_address');
+        $email_address = $request->getParam('email_address');
 
-		$user = User::where('email_address', $email_address)->first();
+        $user = User::where('email_address', $email_address)->first();
 
-		if(!$user) {
-			$this->flash->addMessage('error', $this->config->get('messages.recover.error'));
-			return $response->withRedirect($this->router->pathFor('getRecoverPassword'));
-		} else {
-			$identifier = $this->hash->hashed($this->config->get('auth.recover'));
+        if(!$user) {
+            $this->flash->addMessage('error', $this->config->get('messages.recover.error'));
+            return $response->withRedirect($this->router->pathFor('getRecoverPassword'));
+        } else {
+            $identifier = $this->hash->hashed($this->config->get('auth.recover'));
 
-			$user->update([
-				'recover_hash' => $identifier
-			]);
-			
-			$this->mail->to($user->email_address, $this->config->get('mail.from.name'))->send(new Recover($user, $identifier));
-			
-			/*
-			Send SMS to User
-			*/
-			$number = $user->mobile_number;
-			$body = $this->view->fetch('includes/services/sms/recover-password.php', compact('user'));
-			$this->sms->send($number, $body);
-			
-			Session::delete('old');
+            $user->update([
+                'recover_hash' => $identifier
+            ]);
 
-			$this->flash->addMessage('success', $this->config->get('messages.recover.success'));
-			return $response->withRedirect($this->router->pathFor('getLogin'));
-		}
-	}
+            $this->mail->to($user->email_address, $this->config->get('mail.from.name'))->send(new Recover($user, $identifier));
+
+            /*
+            Send SMS to User
+            */
+            $number = $user->mobile_number;
+            $body = $this->view->fetch('includes/services/sms/recover-password.php', compact('user'));
+            $this->sms->send($number, $body);
+
+            Session::delete('old');
+
+            $this->flash->addMessage('success', $this->config->get('messages.recover.success'));
+            return $response->withRedirect($this->router->pathFor('getLogin'));
+        }
+    }
 
 }
