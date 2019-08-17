@@ -23,11 +23,10 @@ use Base\Helpers\Session;
 class TranslationController {
 	
     public function switcher(Request $request, Response $response, $args) {
+        if(isset($args['lang'])) {
+            Session::put('lang', $args['lang']);
+        }
 
-		if(isset($args['lang'])) {
-			Session::put('lang', $args['lang']);
-		}
-		
         return $response->withRedirect($_SERVER['HTTP_REFERER']);
     }
 	
