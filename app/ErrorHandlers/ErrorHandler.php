@@ -24,8 +24,8 @@ use Exception;
 
 class ErrorHandler extends BaseConstructor {
 	
-	public function __invoke(Request $request, Response $response, Exception $exception) {
-		return $this->view->render($response, 'includes/errors/500.php')->withStatus(500)->withHeader('Content-Type', 'text/html');
-	}
+    public function __invoke(Request $request, Response $response, Exception $exception) {
+        return $this->view->render($response, 'includes/errors/500.php')->withStatus(500)->withHeader('Content-Type', 'text/html');
+    }
 	
 }
