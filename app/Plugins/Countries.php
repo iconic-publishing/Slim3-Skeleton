@@ -106,7 +106,7 @@ class Countries {
     }
 
     public static $countries = [
-		'AF' => ['alpha2'=>'AF', 'alpha3'=>'AFG', 'num'=>'004', 'isd'=> '93', 'name' => 'Afghanistan', 'continent' => 'Asia'],
+        'AF' => ['alpha2'=>'AF', 'alpha3'=>'AFG', 'num'=>'004', 'isd'=> '93', 'name' => 'Afghanistan', 'continent' => 'Asia'],
         'AX' => ['alpha2'=>'AX', 'alpha3'=>'ALA', 'num'=>'248', 'isd'=> '358', 'name' => 'Aland Islands', 'continent' => 'Europe'],
         'AL' => ['alpha2'=>'AL', 'alpha3'=>'ALB', 'num'=>'008', 'isd'=> '355', 'name' => 'Albania', 'continent' => 'Europe'],
         'DZ' => ['alpha2'=>'DZ', 'alpha3'=>'DZA', 'num'=>'012', 'isd'=> '213', 'name' => 'Algeria', 'continent' => 'Africa'],
