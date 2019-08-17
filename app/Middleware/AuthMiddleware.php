@@ -15,8 +15,8 @@ Change Request ID:
 namespace Base\Middleware;
 
 use Base\{
-	Constructor\BaseConstructor,
-	Helpers\Cookie
+    Constructor\BaseConstructor,
+    Helpers\Cookie
 };
 use Psr\Http\Message\{
     ServerRequestInterface as Request,
@@ -30,26 +30,24 @@ class AuthMiddleware extends BaseConstructor {
             $this->flash->addMessage('warning', $this->config->get('messages.auth.error'));
             return $response->withRedirect($this->router->pathFor('getLogin'));
         }
-		
-		$token = $request->getAttribute('routeInfo')[2]['token'];
 
-		if(!$this->hash->hashCheck($this->auth->user()->token, $token)) {
-			if(Cookie::exists($this->config->get('auth.remember'))) {
-				$this->auth->user()->removeRememberCredentials();
-				Cookie::delete($this->config->get('auth.remember'), null, 1);
-			}
-			
-			$this->auth->user()->removeLoginToken();
-			$this->auth->user()->removeLoginIp();
-			$this->auth->logout();
-			
-			$this->flash->addMessage('warning', $this->config->get('messages.auth.info'));
-			return $response->withRedirect($this->router->pathFor('getLogin'));
-		}
+        $token = $request->getAttribute('routeInfo')[2]['token'];
 
-        $response = $next($request, $response);
-		
-        return $response;
+        if(!$this->hash->hashCheck($this->auth->user()->token, $token)) {
+            if(Cookie::exists($this->config->get('auth.remember'))) {
+                $this->auth->user()->removeRememberCredentials();
+                Cookie::delete($this->config->get('auth.remember'), null, 1);
+            }
+
+            $this->auth->user()->removeLoginToken();
+            $this->auth->user()->removeLoginIp();
+            $this->auth->logout();
+
+            $this->flash->addMessage('warning', $this->config->get('messages.auth.info'));
+            return $response->withRedirect($this->router->pathFor('getLogin'));
+        }
+
+        return $next($request, $response);
     }
 	
 }
