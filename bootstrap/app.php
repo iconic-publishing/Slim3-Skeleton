@@ -211,10 +211,10 @@ $container['csrf'] = function ($container) {
 v::with('Base\\Validation\\Rules\\');
 
 $app->add(new OfflineMiddleware($container))
-	->add(new ValidationErrorsMiddleware($container))
-	->add(new OldInputMiddleware($container))
-	->add(new CsrfViewMiddleware($container))
-	->add(new CsrfStatusMiddleware($container))
-	->add($container->csrf);
+    ->add(new ValidationErrorsMiddleware($container))
+    ->add(new OldInputMiddleware($container))
+    ->add(new CsrfViewMiddleware($container))
+    ->add(new CsrfStatusMiddleware($container))
+    ->add($container->csrf);
 
 require __DIR__ . '/../routes/web.php';
