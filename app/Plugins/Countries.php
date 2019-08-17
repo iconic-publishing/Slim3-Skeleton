@@ -47,26 +47,26 @@ class Countries {
         return $result;
     }
 	
-	public static function getFromContinent($key = 'alpha2', $request = 'name', $continent = null) {
+    public static function getFromContinent($key = 'alpha2', $request = 'name', $continent = null) {
         $support = [
-			'alpha2', 
-			'alpha3', 
-			'num', 
-			'isd', 
-			'name', 
-			'continent'
-		];
-		
+            'alpha2', 
+            'alpha3', 
+            'num', 
+            'isd', 
+            'name', 
+            'continent'
+        ];
+
         $supported = [
-			'Africa', 
-			'Antarctica', 
-			'Asia', 
-			'Asias', 
-			'Europe', 
-			'North America', 
-			'Oceania', 
-			'South America'
-		];
+            'Africa', 
+            'Antarctica', 
+            'Asia', 
+            'Asias', 
+            'Europe', 
+            'North America', 
+            'Oceania', 
+            'South America'
+        ];
 
         if(!in_array($key, $support)) {
             $key = null;
@@ -79,7 +79,7 @@ class Countries {
         if(!in_array($request, $support)) {
             $request = 'name';
         }
-		
+
         $result = [];
 
         foreach(self::$countries as $k => $country) {
@@ -101,7 +101,7 @@ class Countries {
                 }
             }
         }
-		
+
         return $result;
     }
 
