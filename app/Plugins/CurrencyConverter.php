@@ -15,28 +15,27 @@ Change Request ID:
 namespace Base\Plugins;
 
 use Money\{
-	Money,
-	Converter,
-	Exchange\FixedExchange,
-	Currencies\ISOCurrencies,
-	Currency
+    Money,
+    Converter,
+    Exchange\FixedExchange,
+    Currencies\ISOCurrencies,
+    Currency
 };
 
 class CurrencyConverter {
 	
-	public function convert($amount, $from, $to) {
-		$exchange = new FixedExchange([
-			$from => [
-				$to => 1
-			]
-		]);
+    public function convert($amount, $from, $to) {
+        $exchange = new FixedExchange([
+            $from => [
+                $to => 1
+            ]
+        ]);
 
-		$converter = new Converter(new ISOCurrencies(), $exchange);
+        $converter = new Converter(new ISOCurrencies(), $exchange);
 
-		$input = Money::$from($amount);
-		$output = $converter->convert($input, new Currency($to));
+        $input = Money::$from($amount);
 		
-		return $output;
-	}
+        return $converter->convert($input, new Currency($to));
+    }
 	
 }
