@@ -15,8 +15,8 @@ Change Request ID:
 namespace Base\Controllers\Auth;
 
 use Base\{
-	Constructor\BaseConstructor,
-	Helpers\Cookie
+    Constructor\BaseConstructor,
+    Helpers\Cookie
 };
 use Psr\Http\Message\{
     ServerRequestInterface as Request,
@@ -25,16 +25,16 @@ use Psr\Http\Message\{
 
 class AuthLogoutController extends BaseConstructor {
 	
-	public function logout(Request $request, Response $response) {
-		if(Cookie::exists($this->config->get('auth.remember'))) {
-			$this->auth->user()->removeRememberCredentials();
-			Cookie::delete($this->config->get('auth.remember'), null, 1);
-		}
-		
-		$this->auth->user()->removeLoginToken();
-		$this->auth->logout();
-		
-		$this->flash->addMessage('warning', $this->config->get('messages.login.logout'));
+    public function logout(Request $request, Response $response) {
+        if(Cookie::exists($this->config->get('auth.remember'))) {
+            $this->auth->user()->removeRememberCredentials();
+            Cookie::delete($this->config->get('auth.remember'), null, 1);
+        }
+
+        $this->auth->user()->removeLoginToken();
+        $this->auth->logout();
+
+        $this->flash->addMessage('warning', $this->config->get('messages.login.logout'));
         return $response->withRedirect($this->router->pathFor('getLogin'));
     }
 	
