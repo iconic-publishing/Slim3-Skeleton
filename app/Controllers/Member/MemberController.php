@@ -15,8 +15,8 @@ Change Request ID:
 namespace Base\Controllers\Member;
 
 use Base\{
-	Constructor\BaseConstructor,
-	Models\User\User
+    Constructor\BaseConstructor,
+    Models\User\User
 };
 use Psr\Http\Message\{
     ServerRequestInterface as Request,
@@ -25,14 +25,14 @@ use Psr\Http\Message\{
 
 class MemberController extends BaseConstructor {
 	
-	public function member(Request $request, Response $response) {
-		$user = $this->user();
-		
-		return $this->view->render($response, 'member/index.php', compact('user'));
+    public function member(Request $request, Response $response) {
+        $user = $this->user();
+
+        return $this->view->render($response, 'member/index.php', compact('user'));
     }
 
-	protected function user() {
-		return User::where('id', $this->auth->user()->id)->first();
-	}
+    protected function user() {
+        return User::where('id', $this->auth->user()->id)->first();
+    }
 	
 }
