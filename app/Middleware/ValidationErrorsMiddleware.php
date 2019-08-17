@@ -15,8 +15,8 @@ Change Request ID:
 namespace Base\Middleware;
 
 use Base\{
-	Constructor\BaseConstructor,
-	Helpers\Session
+    Constructor\BaseConstructor,
+    Helpers\Session
 };
 use Psr\Http\Message\{
     ServerRequestInterface as Request,
@@ -26,12 +26,10 @@ use Psr\Http\Message\{
 class ValidationErrorsMiddleware extends BaseConstructor {
 
     public function __invoke(Request $request, Response $response, Callable $next) {
-		Session::exists('errors') ? $this->view->getEnvironment()->addGlobal('errors', Session::get('errors')) : null;
+        Session::exists('errors') ? $this->view->getEnvironment()->addGlobal('errors', Session::get('errors')) : null;
      	Session::delete('errors');
 
-        $response = $next($request, $response);
-		
-        return $response;
+        return $next($request, $response);
     }
 	
 }
