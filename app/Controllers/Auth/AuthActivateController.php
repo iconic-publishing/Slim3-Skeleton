@@ -30,7 +30,7 @@ class AuthActivateController extends BaseConstructor {
         $email_address = $request->getParam('email_address');
         $identifier = $request->getParam('identifier');
         
-		$user = User::where('email_address', $email_address)->where('active', false)->first();
+        $user = User::where('email_address', $email_address)->where('active', false)->first();
 
         if(!$user) {
             $this->flash->addMessage('info', $this->config->get('messages.activate.active'));
