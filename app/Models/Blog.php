@@ -18,13 +18,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model {
 
-	protected $table = 'blogs';
-	
-	protected $fillable = [
-		'slug',
-		'title',
-		'description',
-		'published_on'
+    protected $table = 'blogs';
+
+    protected $fillable = [
+        'slug',
+        'title',
+        'description',
+        'published_on'
     ];
 	
 }
