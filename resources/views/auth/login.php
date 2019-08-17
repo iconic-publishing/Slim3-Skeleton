@@ -2,59 +2,57 @@
 
 {% block content %}
 
-	<section class="padding-xs">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-					<p><a href="{{ path_for('index') }}">Back to Homepage</a></p>
-					
-					<h2>Sample Login Page - <small><code>app/Controllers/Auth/AuthLoginController.php</code></small></h2>
-					
-					<hr>
-					
-					{% include 'includes/messages/messages.php' %}
-					
-					<form action="{{ path_for('postLogin') }}" method="post" autocomplete="on">
-						<fieldset>
-							<div class="row">
-								<div class="col-md-6 {{ errors.email_or_username ? 'has-error' : '' }}">
-									<label>Username or Email <span class="red">*</span></label>
-									<input type="text" class="form-control" name="email_or_username" value="{{ old.email_or_username }}">
-									<span class="help-block">{{ errors.email_or_username | first }}</span>
-								</div>
-								
-								<div class="col-md-6 {{ errors.password ? 'has-error' : '' }}">
-									<label>Password <span class="red">*</span></label>
-									<input type="password" class="form-control" name="password">
-									<span class="help-block red">{{ errors.password | first }}</span>
-								</div>
-								
-								<div class="col-md-12">
-									<label style="margin-left: 20px" class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
-								</div>
-							</div>
-						</fieldset>
+	<div class="container padding-xs">
+		<div class="row justify-content-center">
+			<div class="col-lg-6">
+				<p><a href="{{ path_for('index') }}">Back to Homepage</a></p>
+
+				<h2>Sample Login Page</h2>
+
+				<code>app/Controllers/Auth/AuthLoginController.php</code>
+
+				<hr>
+
+				{% include 'includes/messages/messages.php' %}
+
+				<form action="{{ path_for('postLogin') }}" method="post" autocomplete="{{ config.app.autocomplete }}">
+					<div class="form-row">
+						<div class="col-lg-6 mb-3">
+							<label>Email or Username <span class="red">*</span></label>
+							<input type="text" class="form-control {{ errors.email_or_username ? 'is-invalid' : '' }}" name="email_or_username" value="{{ old.email_or_username }}">
+							<span class="invalid-feedback">{{ errors.email_or_username | first }}</span>
+						</div>
 						
-						<hr>
+						<div class="col-lg-6 mb-3">
+							<label>Password <span class="red">*</span></label>
+							<input type="password" class="form-control {{ errors.password ? 'is-invalid' : '' }}" name="password">
+							<span class="invalid-feedback">{{ errors.password | first }}</span>
+						</div>
 						
-						<div class="row">
-							<div class="col-md-12">
-								<button type="submit" class="btn btn-primary">LOGIN</button>
+						<div class="col-lg-12 mb-3">
+							<div class="form-check">
+								<label class="form-check-label">
+									<input type="checkbox" class="form-check-input" name="remember">
+									Keep me logged in
+								</label>
 							</div>
 						</div>
 						
-						{{ csrf.field | raw }}
-					</form>
-					
-					<hr>
-					
-					<h3>Test Accounts</h3>
-					
-					<p>Admin Account: Username <code>517977</code> Password <code>password123456</code></p>
-					<p>User Account: Username <code>517978</code> Password <code>password123456</code></p>
-				</div>
+						<div class="col-lg-12">
+							<button type="submit" class="btn btn-primary">LOGIN</button>
+						</div>
+					</div>
+					{{ csrf.field | raw }}
+				</form>
+
+				<hr>
+
+				<h3>Test Accounts</h3>
+
+				<p>Admin Account: Username <code>517977</code> Password <code>password123456</code></p>
+				<p>User Account: Username <code>517978</code> Password <code>password123456</code></p>
 			</div>
 		</div>
-	</section>
+	</div>
 	
 {% endblock %}

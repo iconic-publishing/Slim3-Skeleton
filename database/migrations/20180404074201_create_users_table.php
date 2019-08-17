@@ -3,7 +3,7 @@
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
 @Author			John Hoddy <john.hoddy@iconic-publishing.com>
 @Website		https://www.iconic-publishing.com
-@Created		Monday, 12th March, 2018
+@Created		Monday, 2nd April, 2018
 
 © Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
@@ -27,8 +27,8 @@ class CreateUsersTable extends Migration {
 			$table->string('mobile_number', 255);
 			$table->string('password', 255);
 			$table->string('token', 255)->nullable();
-			$table->tinyInteger('active');
-			$table->tinyInteger('locked');
+			$table->boolean('active');
+			$table->boolean('locked');
 			$table->string('active_hash', 255)->nullable();
 			$table->string('recover_hash', 255)->nullable();
 			$table->string('remember_identifier', 255)->nullable();

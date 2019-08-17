@@ -3,7 +3,7 @@
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
 @Author			John Hoddy <john.hoddy@iconic-publishing.com>
 @Website		https://www.iconic-publishing.com
-@Created		Monday, 12th March, 2018
+@Created		Monday, 2nd April, 2018
 
 © Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
@@ -20,14 +20,14 @@ class CreateUsersPermissionsTable extends Migration {
 	public function up() {
 		$this->schema->create('users_permissions', function (Blueprint $table) {
 			$table->increments('id');
-			$table->unsignedInteger('user_id');
-			$table->tinyInteger('is_administrator');
-			$table->tinyInteger('is_admin');
-			$table->tinyInteger('is_staff');
-			$table->tinyInteger('is_user');
+			$table->integer('user_id')->unsigned()->index();
+			$table->boolean('is_administrator');
+			$table->boolean('is_admin');
+			$table->boolean('is_staff');
+			$table->boolean('is_user');
 			$table->timestamps();
 			
-			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 		});
 	}
 	

@@ -3,7 +3,7 @@
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
 @Author			John Hoddy <john.hoddy@iconic-publishing.com>
 @Website		https://www.iconic-publishing.com
-@Created		Monday, 12th March, 2018
+@Created		Monday, 2nd April, 2018
 
 © Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
@@ -31,6 +31,10 @@ return [
 
 		'csrf' => [
 			'error' => 'Something went wrong with your submission. Please try again.',
+		],
+		
+		'recaptcha' => [
+			'error' => 'Please Tick the reCAPTCHA box to prove you are human and not a robot.',
 		],
 
 		'contact' => [
@@ -70,4 +74,5 @@ return [
 			'logout' => 'You have logged out successfully.',
 		]
 	]
+	
 ];

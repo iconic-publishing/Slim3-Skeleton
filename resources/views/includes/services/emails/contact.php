@@ -1,6 +1,6 @@
 New Website Enquiry
 
-Full Name: {{ data.full_name }}
+Full Name: {{ data.first_name }} {{ data.last_name }}
 Email Address: {{ data.email_address }}
 Mobile Number: {{ data.mobile_number }}
 Country: {{ data.country }}

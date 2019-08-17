@@ -3,7 +3,7 @@
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
 @Author			John Hoddy <john.hoddy@iconic-publishing.com>
 @Website		https://www.iconic-publishing.com
-@Created		Monday, 12th March, 2018
+@Created		Monday, 2nd April, 2018
 
 © Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
@@ -12,27 +12,29 @@ Change Request ID:
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 *********************************************************************/
 
-use Base\Controllers\Lang\TranslationController;
-use Base\Controllers\StaticSiteController;
-use Base\Controllers\PressController;
-use Base\Controllers\ContactController;
-use Base\Controllers\Auth\AuthRegisterController;
-use Base\Controllers\Auth\AuthActivateController;
-use Base\Controllers\Auth\AuthLoginController;
-use Base\Controllers\Auth\AuthLogoutController;
-use Base\Controllers\Auth\AuthRecoverPasswordController;
-use Base\Controllers\Auth\AuthResetPasswordController;
-use Base\Controllers\Members\MembersController;
-use Base\Controllers\Admin\AdminController;
-use Base\Middleware\AuthMiddleware;
+use Base\{
+	Controllers\Lang\TranslationController,
+	Controllers\StaticSiteController,
+	Controllers\BlogController,
+	Controllers\ContactController,
+	Controllers\Auth\AuthRegisterController,
+	Controllers\Auth\AuthActivateController,
+	Controllers\Auth\AuthLoginController,
+	Controllers\Auth\AuthLogoutController,
+	Controllers\Auth\AuthRecoverPasswordController,
+	Controllers\Auth\AuthResetPasswordController,
+	Controllers\Member\MemberController,
+	Controllers\Admin\AdminController,
+	Middleware\AuthMiddleware
+};
 
 $app->get('/switcher/{lang}', TranslationController::class . ':switcher')->setName('switcher');
 
 $app->get('/', StaticSiteController::class . ':index')->setName('index');
 
-$app->group('/press', function() {
-	$this->get('', PressController::class . ':getPress')->setName('getPress');
-	$this->get('/{slug}', PressController::class . ':getPressDetails')->setName('getPressDetails');
+$app->group('/blog', function() {
+	$this->get('', BlogController::class . ':getBlogs')->setName('getBlogs');
+	$this->get('/{slug}', BlogController::class . ':getBlogDetails')->setName('getBlogDetails');
 });
 
 $app->group('/contact', function() {
@@ -66,8 +68,8 @@ $app->group('/reset-password/{email_address}', function() {
 	$this->post('', AuthResetPasswordController::class . ':postResetPassword')->setName('postResetPassword');
 });
 
-$app->group('/members/{token}', function() {
-	$this->get('/dashboard', MembersController::class . ':members')->setName('members');
+$app->group('/member/{token}', function() {
+	$this->get('/dashboard', MemberController::class . ':member')->setName('member');
 })->add(new AuthMiddleware($container));
 
 $app->group('/admin/{token}', function() {

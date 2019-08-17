@@ -3,7 +3,7 @@
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
 @Author			John Hoddy <john.hoddy@iconic-publishing.com>
 @Website		https://www.iconic-publishing.com
-@Created		Monday, 12th March, 2018
+@Created		Monday, 2nd April, 2018
 
 © Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
@@ -13,8 +13,6 @@ Change Request ID:
 *********************************************************************/
 
 require_once __DIR__ . '/bootstrap/app.php';
-
-$config = $container->config->get('database');
 
 return [
  	
@@ -31,12 +29,12 @@ return [
 	'environments' => [
 		'default_migration_table' => '_migrations',
 		'default' => [
-			'adapter' => $config['driver'],
-			'host' => $config['host'],
-			'port' => $config['port'],
-			'name' => $config['database'],
-			'user' => $config['username'],
-			'pass' => $config['password']
+			'adapter' => $container->config->get('database.driver'),
+			'host' => $container->config->get('database.host'),
+			'port' => $container->config->get('database.port'),
+			'name' => $container->config->get('database.database'),
+			'user' => $container->config->get('database.username'),
+			'pass' => $container->config->get('database.password')
 		]
 	]
 
