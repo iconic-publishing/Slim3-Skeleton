@@ -25,7 +25,7 @@ use Psr\Http\Message\{
 
 class AuthLogoutController extends BaseConstructor {
 	
-		public function logout(Request $request, Response $response) {
+	public function logout(Request $request, Response $response) {
         if(Cookie::exists($this->config->get('auth.remember'))) {
             $this->auth->user()->removeRememberCredentials();
             Cookie::delete($this->config->get('auth.remember'), null, 1);
