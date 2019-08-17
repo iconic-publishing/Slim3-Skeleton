@@ -30,9 +30,7 @@ class CsrfViewMiddleware extends BaseConstructor {
             ',
         ]);
 
-        $response = $next($request, $response);
-		
-        return $response;
+        return $next($request, $response);
     }
 	
 }
