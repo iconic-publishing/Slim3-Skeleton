@@ -26,12 +26,10 @@ use Psr\Http\Message\{
 class OldInputMiddleware extends BaseConstructor {
 	
     public function __invoke(Request $request, Response $response, Callable $next) {
-		Session::exists('old') ? $this->view->getEnvironment()->addGlobal('old', Session::get('old')) : null;
-		Session::put('old', $request->getParams());
+        Session::exists('old') ? $this->view->getEnvironment()->addGlobal('old', Session::get('old')) : null;
+        Session::put('old', $request->getParams());
 
-        $response = $next($request, $response);
-		
-        return $response;
+        return $next($request, $response);
     }
 	
 }
