@@ -62,8 +62,6 @@ class ContactController extends BaseConstructor {
 
 			/*
 			Send Twilio SMS here if so required
-			*/
-			/*
 			$number = $request->getParam('mobile_number'); // If sending to User
 			*/
 			$number = $this->config->get('twilio.companyNumber'); // If sending to you or your company
