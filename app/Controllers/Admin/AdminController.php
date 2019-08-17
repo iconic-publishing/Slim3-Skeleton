@@ -15,8 +15,8 @@ Change Request ID:
 namespace Base\Controllers\Admin;
 
 use Base\{
-	Constructor\BaseConstructor,
-	Models\User\User
+    Constructor\BaseConstructor,
+    Models\User\User
 };
 use Psr\Http\Message\{
     ServerRequestInterface as Request,
@@ -25,15 +25,15 @@ use Psr\Http\Message\{
 
 class AdminController extends BaseConstructor {
 	
-	public function admin(Request $request, Response $response) {
-		$user = $this->user();
+    public function admin(Request $request, Response $response) {
+        $user = $this->user();
 
-		return $this->view->render($response, 'admin/index.php', compact('user'));
+        return $this->view->render($response, 'admin/index.php', compact('user'));
     }
-	
-	protected function user() {
-		return User::where('id', $this->auth->user()->id)->first();
-	}
+
+    protected function user() {
+        return User::where('id', $this->auth->user()->id)->first();
+    }
 	
 }
 
