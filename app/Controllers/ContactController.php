@@ -72,8 +72,8 @@ class ContactController extends BaseConstructor {
             */
             /*
             if($data['gdpr'] === true) {
-            $status = 'subscribed';
-            $this->mailchimp->subscribe($data['email_address'], $data['first_name'], $status);
+                $status = 'subscribed';
+                $this->mailchimp->subscribe($data['email_address'], $data['first_name'], $status);
             }
             */
 
