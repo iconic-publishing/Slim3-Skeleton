@@ -56,7 +56,7 @@ types that you may specify when building your tables:
 Command ------------------------------------- Description
 $table->bigIncrements('id');	              Auto-incrementing UNSIGNED BIGINT (primary key) equivalent column.
 $table->bigInteger('votes');	              BIGINT equivalent column.
-$table->binary('data');	                    BLOB equivalent column.
+$table->binary('data');											BLOB equivalent column.
 $table->boolean('confirmed');	              BOOLEAN equivalent column.
 $table->char('name', 100);	                  CHAR equivalent column with an optional length.
 $table->date('created_at');	                  DATE equivalent column.
