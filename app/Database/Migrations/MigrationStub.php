@@ -17,34 +17,34 @@ use Illuminate\Database\Schema\Blueprint;
 
 class $className extends $baseClassName {
 	
-	public function up() {
-		$this->schema->create('', function (Blueprint $table) {
-			$table->increments('id');
-			$table->timestamps();
-		});
-		
-		/* START
-		Remove if creating a new table.
-		Keep if adding to an existing table
-		*/
-		$this->schema->table('', function (Blueprint $table) {
-			
-		});
-		/* END */
-	}
-	
-	public function down() {
-		/* START
-		Remove if creating a new table.
-		Keep if adding to an existing table
-		*/
-		$this->schema->table('', function (Blueprint $table) {
-			
-		});
-		/* END */
-		
-		$this->schema->drop('');
-	}
+    public function up() {
+        $this->schema->create('', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+        });
+
+        /* START
+        Remove if creating a new table.
+        Keep if adding to an existing table
+        */
+        $this->schema->table('', function (Blueprint $table) {
+
+        });
+        /* END */
+    }
+
+    public function down() {
+        /* START
+        Remove if creating a new table.
+        Keep if adding to an existing table
+        */
+        $this->schema->table('', function (Blueprint $table) {
+
+        });
+        /* END */
+
+        $this->schema->drop('');
+    }
 	
 }
 
@@ -56,7 +56,7 @@ types that you may specify when building your tables:
 Command ------------------------------------- Description
 $table->bigIncrements('id');	              Auto-incrementing UNSIGNED BIGINT (primary key) equivalent column.
 $table->bigInteger('votes');	              BIGINT equivalent column.
-$table->binary('data');	                      BLOB equivalent column.
+$table->binary('data');	                    BLOB equivalent column.
 $table->boolean('confirmed');	              BOOLEAN equivalent column.
 $table->char('name', 100);	                  CHAR equivalent column with an optional length.
 $table->date('created_at');	                  DATE equivalent column.

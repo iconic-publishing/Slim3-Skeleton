@@ -19,8 +19,8 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Migration extends AbstractMigration {
 	
-	protected $schema;
-	
+    protected $schema;
+
     public function init() {
         $this->schema = (new Capsule)->schema();
     }
