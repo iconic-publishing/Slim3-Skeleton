@@ -16,30 +16,29 @@ namespace Base\Services;
 
 use Base\Constructor\BaseConstructor;
 use Twilio\{
-	Rest\Client,
-	Exceptions\TwilioException
+    Rest\Client,
+    Exceptions\TwilioException
 };
 
 class Sms extends BaseConstructor {
 	
-	public function send($number, $body) {
-		$sid = $this->config->get('twilio.sid');
-		$token = $this->config->get('twilio.token');
+    public function send($number, $body) {
+        $sid = $this->config->get('twilio.sid');
+        $token = $this->config->get('twilio.token');
 
-		$client = new Client($sid, $token);
-		
-		try {
-			$message = $client->messages->create($number, [
-				'from' => $this->config->get('twilio.number'),
-				'body' => $body
-			  ]
-			);
+        $client = new Client($sid, $token);
 
-			return $message;
-		} catch (TwilioException $e) {
-			// Catch error if so required
-			// return $e->getMessage();
+        try {
+            $message = $client->messages->create($number, [
+                'from' => $this->config->get('twilio.number'),
+                'body' => $body
+            ]);
+
+            return $message;
+        } catch (TwilioException $e) {
+            // Catch error if so required
+            // return $e->getMessage();
         }
-	}
+    }
 	
 }
