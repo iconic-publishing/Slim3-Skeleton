@@ -29,7 +29,7 @@ use ReCaptcha\ReCaptcha;
 
 class ContactController extends BaseConstructor {
 	
-	public function contact(Request $request, Response $response) {
+    public function contact(Request $request, Response $response) {
         return $this->view->render($response, 'contact/contact.php');
     }
 	
