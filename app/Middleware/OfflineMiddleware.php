@@ -25,14 +25,14 @@ use Psr\Http\Message\{
 class OfflineMiddleware extends BaseConstructor {
 	
     public function __invoke(Request $request, Response $response, Callable $next) {
-		$offline = getenv('OFFLINE') === 'true' ? true : false;
-		
+        $offline = getenv('OFFLINE') === 'true' ? true : false;
+
         if($offline) {
-			$response = $response->withStatus(503)->withHeader('Retry-After', 3600);
-			return $this->view->render($response, 'includes/errors/offline.php');
-		}
-		
-		return $next($request, $response);
+            $response = $response->withStatus(503)->withHeader('Retry-After', 3600);
+            return $this->view->render($response, 'includes/errors/offline.php');
+        }
+
+        return $next($request, $response);
     }
 	
 }
