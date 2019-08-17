@@ -26,11 +26,11 @@ class MailChimp extends BaseConstructor {
         $auth = base64_encode('user:' . $apikey);
 
         $data = [
-            'apikey'        => $apikey,
+            'apikey' => $apikey,
             'email_address' => $email,
-            'email_type'	=> 'html',
-            'status'        => $status,
-            'merge_fields'  => [
+            'email_type' => 'html',
+            'status' => $status,
+            'merge_fields' => [
                 'FNAME' => $firstname
             ],
             'ip_opt' => Filter::ip(),
@@ -60,8 +60,8 @@ class MailChimp extends BaseConstructor {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $this->config->get('mailchimp.list.server') . $this->config->get('mailchimp.list.name') . md5(strtolower($email)));
         curl_setopt($curl, CURLOPT_HTTPHEADER, [
-        'Content-Type: application/json', 
-        'Authorization: Basic ' . $auth
+            'Content-Type: application/json', 
+            'Authorization: Basic ' . $auth
         ]);
         curl_setopt($curl, CURLOPT_USERAGENT, 'PHP-MCAPI/3.0');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
