@@ -13,46 +13,46 @@ Change Request ID:
 *********************************************************************/
 
 use Dotenv\{
-	Dotenv,
-	Exception\InvalidPathException
+    Dotenv,
+    Exception\InvalidPathException
 };
 use Slim\{
-	App,
-	Views\TwigExtension,
-	Flash\Messages as Flash,
-	Csrf\Guard as Csrf
+    App,
+    Views\TwigExtension,
+    Flash\Messages as Flash,
+    Csrf\Guard as Csrf
 };
 use Noodlehaus\Config;
 use Illuminate\{
-	Database\Capsule\Manager as Capsule,
-	Translation\FileLoader,
-	Translation\Translator,
-	Filesystem\Filesystem,
-	Pagination\LengthAwarePaginator,
-	Pagination\Paginator
+    Database\Capsule\Manager as Capsule,
+    Translation\FileLoader,
+    Translation\Translator,
+    Filesystem\Filesystem,
+    Pagination\LengthAwarePaginator,
+    Pagination\Paginator
 };
 use Base\{
-	Helpers\Session, 
-	Helpers\Input,
-	Helpers\Hash,
-	View\Extensions\TranslationExtension,
-	View\Extensions\DebugExtension,
-	View\Factory,
-	Auth\Auth,
-	Plugins\Select,
-	Plugins\CurrencyConverter as Currency,
-	Plugins\Upload,
-	Validation\Validator,
-	Services\Mail\Mailer\Mailer,
-	Services\Sms,
-	Services\Mailchimp,
-	ErrorHandlers\NotFoundHandler,
-	ErrorHandlers\ErrorHandler,
-	Middleware\OfflineMiddleware,
-	Middleware\ValidationErrorsMiddleware,
-	Middleware\OldInputMiddleware,
-	Middleware\CsrfViewMiddleware,
-	Middleware\CsrfStatusMiddleware
+    Helpers\Session, 
+    Helpers\Input,
+    Helpers\Hash,
+    View\Extensions\TranslationExtension,
+    View\Extensions\DebugExtension,
+    View\Factory,
+    Auth\Auth,
+    Plugins\Select,
+    Plugins\CurrencyConverter as Currency,
+    Plugins\Upload,
+    Validation\Validator,
+    Services\Mail\Mailer\Mailer,
+    Services\Sms,
+    Services\Mailchimp,
+    ErrorHandlers\NotFoundHandler,
+    ErrorHandlers\ErrorHandler,
+    Middleware\OfflineMiddleware,
+    Middleware\ValidationErrorsMiddleware,
+    Middleware\OldInputMiddleware,
+    Middleware\CsrfViewMiddleware,
+    Middleware\CsrfStatusMiddleware
 };
 use Respect\Validation\Validator as v;
 
@@ -68,17 +68,17 @@ try {
 }
 
 $app = new App([
-	'settings' => [
-		'displayErrorDetails' => getenv('DISPLAY_ERROR_DETAILS') === 'true',
-		'determineRouteBeforeAppMiddleware' => getenv('DETERMINE_ROUTE_BEFORE_APP_MIDDLEWARE') === 'true',
-		'addContentLengthHeader' => getenv('ADD_CONTENT_LENGTH_HEADER') === 'false'
+    'settings' => [
+        'displayErrorDetails' => getenv('DISPLAY_ERROR_DETAILS') === 'true',
+        'determineRouteBeforeAppMiddleware' => getenv('DETERMINE_ROUTE_BEFORE_APP_MIDDLEWARE') === 'true',
+        'addContentLengthHeader' => getenv('ADD_CONTENT_LENGTH_HEADER') === 'false'
     ]
 ]);
 
 $container = $app->getContainer();
 
 $container['config'] = function ($container) {
-	return new Config(__DIR__ . '/../config');
+    return new Config(__DIR__ . '/../config');
 };
 
 date_default_timezone_set($container->config->get('app.timezone'));
@@ -90,7 +90,7 @@ $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
 $container['db'] = function ($container) use ($capsule) {
-	return $capsule;
+    return $capsule;
 };
 
 $container['translator'] = function ($container) {
@@ -107,41 +107,41 @@ $container['translator'] = function ($container) {
 };
 
 $container['view'] = function ($container) {
-	$view = Factory::getEngine();
+    $view = Factory::getEngine();
 
-	$basePath = rtrim(
-		str_ireplace(
-			'index.php', '', 
-			$container->get('request')->getUri()->getScheme() . '://' . 
-			$container->get('request')->getUri()->getHost() . 
-			$container->get('request')->getUri()->getBasePath()
-		)
-	);
-	
+    $basePath = rtrim(
+        str_ireplace(
+            'index.php', '', 
+            $container->get('request')->getUri()->getScheme() . '://' . 
+            $container->get('request')->getUri()->getHost() . 
+            $container->get('request')->getUri()->getBasePath()
+        )
+    );
+
     $view->addExtension(new TwigExtension($container->get('router'), $basePath));
-	$view->addExtension(new TranslationExtension($container['translator']));
-	$view->addExtension(new DebugExtension());
-	$view->getEnvironment()->addGlobal('config', $container['config']);
-	$view->getEnvironment()->addGlobal('auth', $container['auth']);
-	$view->getEnvironment()->addGlobal('flash', $container['flash']);
-	$view->getEnvironment()->addGlobal('select', $container['select']);
-	$view->getEnvironment()->addGlobal('currency', $container['currency']);
+    $view->addExtension(new TranslationExtension($container['translator']));
+    $view->addExtension(new DebugExtension());
+    $view->getEnvironment()->addGlobal('config', $container['config']);
+    $view->getEnvironment()->addGlobal('auth', $container['auth']);
+    $view->getEnvironment()->addGlobal('flash', $container['flash']);
+    $view->getEnvironment()->addGlobal('select', $container['select']);
+    $view->getEnvironment()->addGlobal('currency', $container['currency']);
 
     return $view;
 };
 
 LengthAwarePaginator::viewFactoryResolver(function () {
-	return new Factory;
+    return new Factory;
 });
 
 LengthAwarePaginator::defaultView('includes/pagination/pagination.php');
 
 Paginator::currentPathResolver(function () {
-	return strtok($_SERVER['REQUEST_URI'], '?') ?: '/';
+    return strtok($_SERVER['REQUEST_URI'], '?') ?: '/';
 });
 
 Paginator::currentPageResolver(function () {
-	return Input::get('page') ?: 1;
+    return Input::get('page') ?: 1;
 });
 
 $container['auth'] = function ($container) {
@@ -170,8 +170,8 @@ $container['validator'] = function ($container) {
 
 $container['mail'] = function ($container) {
     $transport = (new Swift_SmtpTransport($container->config->get('mail.host'), $container->config->get('mail.port'), $container->config->get('mail.encryption')))
-		->setUsername($container->config->get('mail.username'))
-		->setPassword($container->config->get('mail.password'));
+        ->setUsername($container->config->get('mail.username'))
+        ->setPassword($container->config->get('mail.password'));
 
     $swift = new Swift_Mailer($transport);
 
