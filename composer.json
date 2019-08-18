@@ -4,7 +4,7 @@
     "keywords": ["framework", "slim", "iconic publishing"],
     "license": "MIT",
     "type": "project",
-	"require": {
+    "require": {
         "vlucas/phpdotenv": "^2.4",
         "symfony/var-dumper": "^4.0",
         "hassankhan/config": "^1.0",
