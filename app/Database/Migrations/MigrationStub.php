@@ -35,6 +35,18 @@ Available Column Types
 Of course, the schema builder contains a variety of column
 types that you may specify when building your tables:
 
+Example:
+Schema::table('users', function (Blueprint $table) {
+    $table->increments('id');
+});
+
+Schema::table('users_permissions', function (Blueprint $table) {
+    $table->increments('id');
+    $table->integer('user_id')->unsigned()->index();
+
+    $table->foreign('user_id')->references('id')->on('users_permissions')->onDelete('cascade');
+});
+
 Command ------------------------------------- Description
 $table->bigIncrements('id');	              Auto-incrementing UNSIGNED BIGINT (primary key) equivalent column.
 $table->bigInteger('votes');	              BIGINT equivalent column.
@@ -152,13 +164,7 @@ the index type. Here are some examples:
 Command ----------------------------------------------- Description
 $table->dropPrimary('users_id_primary');				Drop a primary key from the "users" table.
 $table->dropUnique('users_email_unique');				Drop a unique index from the "users" table.
-$table->dropIndex('geo_state_index');					Drop a basic index from the "geo" table.
+$table->dropIndex('geo_state_index');                   Drop a basic index from the "geo" table.
 $table->dropSpatialIndex('geo_location_spatialindex');	Drop a spatial index from the "geo" table (except SQLite).
 
-Example:
-Schema::table('posts', function (Blueprint $table) {
-    $table->unsignedInteger('user_id');
-
-    $table->foreign('user_id')->references('id')->on('users');
-});
 *********************************************************************/
