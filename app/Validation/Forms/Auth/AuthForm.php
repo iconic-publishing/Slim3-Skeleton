@@ -33,19 +33,19 @@ class AuthForm {
     public static function loginRules() {
         return [
             'email_or_username' => v::noWhitespace()->notEmpty(),
-            'password' => v::noWhitespace()->notEmpty(),
+            'password' => v::noWhitespace()->notEmpty()
         ];
     }
 	
     public static function recoverPasswordRules() {
         return [
-            'email_address' => v::noWhitespace()->notEmpty()->email(),
+            'email_address' => v::noWhitespace()->notEmpty()->email()
         ];
     }
 	
     public static function resetPasswordRules() {
         return [
-            'password' => v::noWhitespace()->notEmpty()->alnum('!"@£#$%^&*(){}[]+')->length(10, 20),
+            'password' => v::noWhitespace()->notEmpty()->alnum('!"@£#$%^&*(){}[]+')->length(10, 20)
         ];
     }
 	
