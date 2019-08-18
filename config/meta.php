@@ -14,22 +14,22 @@ Change Request ID:
 
 return [
 	
-	/*
-    |--------------------------------------------------------------------------
+    /*
+    |-----------------------------------------------------------------
     | Meta Tags
-    |--------------------------------------------------------------------------
+    |-----------------------------------------------------------------
     |
     | Meta Tags can be added here to fit your project.
-	|
-	| All configurations are done via the .env file within the root.
-	|
+    |
+    | All configurations are done via the .env file within the root.
+    |
     */
 
-	'meta' => [
-		'robots' => 'index, follow',
-		'robotsAdmin' => 'noindex, nofollow',
-		'copyright' => '© Copyright ' . date('Y') . ' ' . getenv('COPYRIGHT_NAME', 'Copyright Name') . '. All Rights Reserved',
-		'author' => 'Iconic Publishing Co Ltd - https://www.iconic-publishing.com',
-	]
+    'meta' => [
+        'robots' => 'index, follow',
+        'robotsAdmin' => 'noindex, nofollow',
+        'copyright' => '© Copyright ' . date('Y') . ' ' . getenv('COPYRIGHT_NAME', 'Copyright Name') . '. All Rights Reserved',
+        'author' => 'Iconic Publishing Co Ltd - https://www.iconic-publishing.com'
+    ]
 
 ];
