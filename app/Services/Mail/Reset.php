@@ -15,13 +15,13 @@ Change Request ID:
 namespace Base\Services\Mail;
 
 use Base\{
-	Services\Mail\Mailer\Mailable,
-	Models\User\User
+    Services\Mail\Mailer\Mailable,
+    Models\User\User
 };
 
 class Reset extends Mailable {
 	
-	protected $user;
+    protected $user;
 
     public function __construct(User $user) {
         $this->user = $user;
@@ -30,7 +30,7 @@ class Reset extends Mailable {
     public function build() {
         return $this->subject(getenv('MAILGUN_FROM_NAME', 'Company Name') . ' - Password Reset')
             ->view('includes/services/emails/reset-password.php')
-			->with([
+            ->with([
                 'user' => $this->user
             ]);
     }
