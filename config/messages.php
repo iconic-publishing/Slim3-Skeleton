@@ -14,65 +14,65 @@ Change Request ID:
 
 return [
 	
-	/*
-    |--------------------------------------------------------------------------
+    /*
+    |-----------------------------------------------------------------
     | Flash Messages
-    |--------------------------------------------------------------------------
+    |-----------------------------------------------------------------
     |
     | Messages can be added here to fit your project.
-	|
+    |
     */
-	
-	'messages' => [
-		'auth' => [
-			'error' => 'You must be signed in to access this area.',
-			'info' => 'You have been logged out as your Security Token has expired!',
-		],
 
-		'csrf' => [
-			'error' => 'Something went wrong with your submission. Please try again.',
-		],
-		
-		'recaptcha' => [
-			'error' => 'Please Tick the reCAPTCHA box to prove you are human and not a robot.',
-		],
+    'messages' => [
+        'auth' => [
+            'error' => 'You must be signed in to access this area.',
+            'info' => 'You have been logged out as your Security Token has expired!'
+        ],
 
-		'contact' => [
-			'error' => 'Please complete all required fields.',
-			'success' => 'Your form has been submitted successfully. We will contact you shortly.',
-		],
+        'csrf' => [
+            'error' => 'Something went wrong with your submission. Please try again.'
+        ],
 
-		'register' => [
-			'error' => 'Please complete all required fields for registration.',
-			'success' => 'You have been registered successfully. Please activate your account with the email we have just sent you.',
-		],
+        'recaptcha' => [
+            'error' => 'Please Tick the reCAPTCHA box to prove you are human and not a robot.'
+        ],
 
-		'activate' => [
-			'active' => 'Your account is already activated.',
-			'problem' => 'There was a problem activating your account.',
-			'success' => 'Your account was activated successfully.',
-		],
+        'contact' => [
+            'error' => 'Please complete all required fields.',
+            'success' => 'Your form has been submitted successfully. We will contact you shortly.'
+        ],
 
-		'recover' => [
-			'required' => 'Please complete all required fields.',
-			'error' => 'This email account is not recognised. Have you registered?',
-			'success' => 'Password recovery successfully. Please reset your password with the email we have just sent you.',
-		],
+        'register' => [
+            'error' => 'Please complete all required fields for registration.',
+            'success' => 'You have been registered successfully. Please activate your account with the email we have just sent you.'
+        ],
 
-		'reset' => [
-			'required' => 'Please complete all required fields.',
-			'error' => 'Sorry, your credentials do not match.',
-			'success' => 'Your password has been reset. You can now login.',
-		],
+        'activate' => [
+            'active' => 'Your account is already activated.',
+            'problem' => 'There was a problem activating your account.',
+            'success' => 'Your account was activated successfully.'
+        ],
 
-		'login' => [
-			'error' => 'Please sign in with your credentials.',
-			'notUser' => 'Could not sign you in with those details.',
-			'notActive' => 'Account not activated. Please use the link in the email we have sent you.',
-			'passwordReset' => 'You have requested a Password Reset. Please use the link in the email we have sent you.',
-			'locked' => 'Account Locked! Please contact our Admin Dept.',
-			'logout' => 'You have logged out successfully.',
-		]
-	]
+        'recover' => [
+            'required' => 'Please complete all required fields.',
+            'error' => 'This email account is not recognised. Have you registered?',
+            'success' => 'Password recovery successfully. Please reset your password with the email we have just sent you.'
+        ],
+
+        'reset' => [
+            'required' => 'Please complete all required fields.',
+            'error' => 'Sorry, your credentials do not match.',
+            'success' => 'Your password has been reset. You can now login.'
+        ],
+
+        'login' => [
+            'error' => 'Please sign in with your credentials.',
+            'notUser' => 'Could not sign you in with those details.',
+            'notActive' => 'Account not activated. Please use the link in the email we have sent you.',
+            'passwordReset' => 'You have requested a Password Reset. Please use the link in the email we have sent you.',
+            'locked' => 'Account Locked! Please contact our Admin Dept.',
+            'logout' => 'You have logged out successfully.'
+        ]
+    ]
 	
 ];
