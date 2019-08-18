@@ -1,6 +1,6 @@
 {
     "name": "iconic-publishing/slim3-skeleton",
-    "description": "A skeleton starter structure for Slim 3",
+    "description": "A skeleton starter structure for Slim 3 with Twig views",
     "keywords": ["framework", "slim", "iconic publishing"],
     "license": "MIT",
     "type": "project",
