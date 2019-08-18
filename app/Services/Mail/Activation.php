@@ -15,26 +15,26 @@ Change Request ID:
 namespace Base\Services\Mail;
 
 use Base\{
-	Services\Mail\Mailer\Mailable,
-	Models\User\User
+    Services\Mail\Mailer\Mailable,
+    Models\User\User
 };
 
 class Activation extends Mailable {
 	
-	protected $user;
-	protected $identifier;
+    protected $user;
+    protected $identifier;
 
     public function __construct(User $user, $identifier) {
         $this->user = $user;
-		$this->identifier = $identifier;
+        $this->identifier = $identifier;
     }
 	
     public function build() {
         return $this->subject(getenv('MAILGUN_FROM_NAME', 'Company Name') . ' - Account Activation')
             ->view('includes/services/emails/activation.php')
-			->with([
+            ->with([
                 'user' => $this->user,
-				'identifier' => $this->identifier
+                'identifier' => $this->identifier
             ]);
     }
 	
