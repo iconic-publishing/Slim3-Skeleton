@@ -148,11 +148,11 @@ look at an example that specifies a column's values should be unique.
 To create the index, we can chain the unique method onto the column definition:
 
 Command ----------------------------------------------- Description
-$table->primary('id');									Adds a primary key.
-$table->primary(['id', 'parent_id']);					Adds composite keys.
-$table->unique('email');								Adds a unique index.
-$table->index('state');									Adds a plain index.
-$table->spatialIndex('location');						Adds a spatial index. (except SQLite)
+$table->primary('id');                                  Adds a primary key.
+$table->primary(['id', 'parent_id']);                   Adds composite keys.
+$table->unique('email');                                Adds a unique index.
+$table->index('state');                                 Adds a plain index.
+$table->spatialIndex('location');                       Adds a spatial index. (except SQLite)
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 Dropping Indexes
@@ -162,8 +162,8 @@ Concatenate the table name, the name of the indexed column, and
 the index type. Here are some examples:
 
 Command ----------------------------------------------- Description
-$table->dropPrimary('users_id_primary');				Drop a primary key from the "users" table.
-$table->dropUnique('users_email_unique');				Drop a unique index from the "users" table.
+$table->dropPrimary('users_id_primary');                Drop a primary key from the "users" table.
+$table->dropUnique('users_email_unique');               Drop a unique index from the "users" table.
 $table->dropIndex('geo_state_index');                   Drop a basic index from the "geo" table.
 $table->dropSpatialIndex('geo_location_spatialindex');	Drop a spatial index from the "geo" table (except SQLite).
 
