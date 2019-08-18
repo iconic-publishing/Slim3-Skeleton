@@ -111,19 +111,19 @@ In addition to the column types listed above, there are several
 column "modifiers" you may use while adding a column to a database table.
 For example, to make the column "nullable", you may use the nullable method:
 
-Modifier ------------------------------------ Description
-->after('column')							  Place the column "after" another column (MySQL)
-->autoIncrement()							  Set INTEGER columns as auto-increment (primary key)
-->charset('utf8')							  Specify a character set for the column (MySQL)
-->collation('utf8_unicode_ci')				  Specify a collation for the column (MySQL/SQL Server)
-->comment('my comment')						  Add a comment to a column (MySQL)
-->default($value)							  Specify a "default" value for the column
-->first()									  Place the column "first" in the table (MySQL)
-->nullable($value = true)					  Allows (by default) NULL values to be inserted into the column
-->storedAs($expression)						  Create a stored generated column (MySQL)
-->unsigned()								  Set INTEGER columns as UNSIGNED (MySQL)
-->useCurrent()								  Set TIMESTAMP columns to use CURRENT_TIMESTAMP as default value
-->virtualAs($expression)					  Create a virtual generated column (MySQL)
+Modifier ---------------------------------------------- Description
+->after('column')                                       Place the column "after" another column (MySQL)
+->autoIncrement()                                       Set INTEGER columns as auto-increment (primary key)
+->charset('utf8')                                       Specify a character set for the column (MySQL)
+->collation('utf8_unicode_ci')                          Specify a collation for the column (MySQL/SQL Server)
+->comment('my comment')                                 Add a comment to a column (MySQL)
+->default($value)                                       Specify a "default" value for the column
+->first()                                               Place the column "first" in the table (MySQL)
+->nullable($value = true)                               Allows (by default) NULL values to be inserted into the column
+->storedAs($expression)                                 Create a stored generated column (MySQL)
+->unsigned()                                            Set INTEGER columns as UNSIGNED (MySQL)
+->useCurrent()                                          Set TIMESTAMP columns to use CURRENT_TIMESTAMP as default value
+->virtualAs($expression)                                Create a virtual generated column (MySQL)
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 Dropping Columns
@@ -133,13 +133,13 @@ add the doctrine/dbal dependency to your composer.json file and run
 the composer update command in your terminal to install the library:
 
 Command ----------------------------------------------- Description
-$table->dropColumn('votes');							Drop a column.
-$table->dropColumn(['votes', 'avatar', 'location']);	Drop array of columns.
-$table->dropRememberToken();							Drop the remember_token column.
-$table->dropSoftDeletes();								Drop the deleted_at column.
-$table->dropSoftDeletesTz();							Alias of dropSoftDeletes() method.
-$table->dropTimestamps();								Drop the created_at and updated_at columns.
-$table->dropTimestampsTz();								Alias of dropTimestamps() method.
+$table->dropColumn('votes');                            Drop a column.
+$table->dropColumn(['votes', 'avatar', 'location']);    Drop array of columns.
+$table->dropRememberToken();                            Drop the remember_token column.
+$table->dropSoftDeletes();                              Drop the deleted_at column.
+$table->dropSoftDeletesTz();                            Alias of dropSoftDeletes() method.
+$table->dropTimestamps();                               Drop the created_at and updated_at columns.
+$table->dropTimestampsTz();                             Alias of dropTimestamps() method.
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 Creating Indexes
