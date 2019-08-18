@@ -24,12 +24,12 @@ return [
     |
     */
 	
-	'app' => [
-		'timezone' => getenv('TIMEZONE', 'Asia/Bangkok'),
-		'displayErrors' => getenv('DISPLAY_ERRORS', 'Off'),
-		'locale' => getenv('LOCALE', 'en'),
-		'onContextMenu' => 'return ' . getenv('ON_CONTEXT_MENU', 'false'),
-		'autocomplete' => getenv('AUTO_COMPLETE', 'Off')
-	]
+    'app' => [
+        'timezone' => getenv('TIMEZONE', 'Asia/Bangkok'),
+        'displayErrors' => getenv('DISPLAY_ERRORS', 'Off'),
+        'locale' => getenv('LOCALE', 'en'),
+        'onContextMenu' => 'return ' . getenv('ON_CONTEXT_MENU', 'false'),
+        'autocomplete' => getenv('AUTO_COMPLETE', 'Off')
+    ]
 
 ];
