@@ -44,7 +44,7 @@ class MessageBuilder {
     }
 
     public function body($body) {
-		$this->swiftMessage->addPart($body, 'text/plain');
+        $this->swiftMessage->addPart($body, 'text/plain');
 
         return $this;
     }
