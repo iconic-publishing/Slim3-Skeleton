@@ -14,10 +14,10 @@ Change Request ID:
 
 return [
 	
-	/*
-    |--------------------------------------------------------------------------
+    /*
+    |-----------------------------------------------------------------
     | Blog
-    |--------------------------------------------------------------------------
+    |-----------------------------------------------------------------
     |
     | Paginators can be added to fit your project.
 	|
@@ -27,9 +27,9 @@ return [
 	|
     */
 
-	'blog' => [
-		'paginator' => getenv('BLOG_PAGINATOR', 12),
-		'sideBarLimit' => getenv('SIDE_BAR_LIMIT', 12)
-	]
+    'blog' => [
+        'paginator' => getenv('BLOG_PAGINATOR', 12),
+        'sideBarLimit' => getenv('SIDE_BAR_LIMIT', 12)
+    ]
 
 ];
