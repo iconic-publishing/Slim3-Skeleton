@@ -24,7 +24,7 @@ use Swift_Message;
 
 class Mailer {
 	
-	protected $swift;
+    protected $swift;
 
     protected $view;
 
