@@ -14,26 +14,26 @@ Change Request ID:
 
 return [
 	
-	/*
-    |--------------------------------------------------------------------------
+    /*
+    |-----------------------------------------------------------------
     | Language Settings
-    |--------------------------------------------------------------------------
+    |-----------------------------------------------------------------
     |
     | Locales can be added here to fit your project. 'locales'
     |
-	| Directories will also need to be added under YOUR_PROJECT_ROOT/lang/
-	|
+    | Directories will also need to be added under YOUR_PROJECT_ROOT/lang/
+    |
     */
-	
-	'lang' => [
-		'fallback_locale' => 'en',
-		'path' => __DIR__ . '/../lang'
-	],
-	
-	'locales' => [
-		'en' => 'English',
-		'de' => 'German',
-		'th' => 'Thai'
-	]
+
+    'lang' => [
+        'fallback_locale' => 'en',
+        'path' => __DIR__ . '/../lang'
+    ],
+
+    'locales' => [
+        'en' => 'English',
+        'de' => 'German',
+        'th' => 'Thai'
+    ]
 
 ];
