@@ -1,32 +1,16 @@
 <?php
-/********************************************************************
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-@Author			John Hoddy <john.hoddy@iconic-publishing.com>
-@Website		https://www.iconic-publishing.com
-@Created		Monday, 2nd April, 2018
-
-© Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-Change Request ID: 
-
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-*********************************************************************/
 
 namespace Base\Controllers\Auth;
 
-use Base\{
-    Constructor\BaseConstructor,
-    Models\User\User,
-    Services\Mail\Verification
-};
-use Psr\Http\Message\{
-    ServerRequestInterface as Request,
-    ResponseInterface as Response
-};
+use Base\Models\User\User;
+use Base\Services\Mail\Verification;
+use Base\Constructor\BaseConstructor;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class AuthActivateController extends BaseConstructor {
 	
-    public function activate(Request $request, Response $response) {
+    public function activate(ServerRequestInterface $request, ResponseInterface $response) {
         $email_address = $request->getParam('email_address');
         $identifier = $request->getParam('identifier');
         

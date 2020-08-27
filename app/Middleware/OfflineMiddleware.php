@@ -1,30 +1,14 @@
 <?php
-/********************************************************************
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-@Author			John Hoddy <john.hoddy@iconic-publishing.com>
-@Website		https://www.iconic-publishing.com
-@Created		Monday, 2nd April, 2018
-
-© Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-Change Request ID: 
-
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-*********************************************************************/
 
 namespace Base\Middleware;
 
-use Base\{
-    Constructor\BaseConstructor
-};
-use Psr\Http\Message\{
-    ServerRequestInterface as Request,
-    ResponseInterface as Response
-};
+use Base\Constructor\BaseConstructor;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class OfflineMiddleware extends BaseConstructor {
 	
-    public function __invoke(Request $request, Response $response, Callable $next) {
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, Callable $next) {
         $offline = getenv('OFFLINE') === 'true' ? true : false;
 
         if($offline) {

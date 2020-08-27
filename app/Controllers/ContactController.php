@@ -1,39 +1,23 @@
 <?php
-/********************************************************************
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-@Author			John Hoddy <john.hoddy@iconic-publishing.com>
-@Website		https://www.iconic-publishing.com
-@Created		Monday, 2nd April, 2018
-
-© Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-Change Request ID: 
-
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-*********************************************************************/
 
 namespace Base\Controllers;
 
-use Base\{
-    Constructor\BaseConstructor,
-    Validation\Forms\ContactForm,
-    Helpers\Filter,
-    Services\Mail\Contact,
-    Helpers\Session
-};
-use Psr\Http\Message\{
-    ServerRequestInterface as Request,
-    ResponseInterface as Response
-};
+use Base\Helpers\Filter;
 use ReCaptcha\ReCaptcha;
+use Base\Helpers\Session;
+use Base\Services\Mail\Contact;
+use Base\Constructor\BaseConstructor;
+use Base\Validation\Forms\ContactForm;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class ContactController extends BaseConstructor {
 	
-    public function contact(Request $request, Response $response) {
+    public function contact(ServerRequestInterface $request, ResponseInterface $response) {
         return $this->view->render($response, 'contact/contact.php');
     }
 	
-    public function contactSubmit(Request $request, Response $response) {
+    public function contactSubmit(ServerRequestInterface $request, ResponseInterface $response) {
         $validation = $this->validator->validate($request, ContactForm::contactRules());
 
         if($validation->fails()) {

@@ -1,34 +1,18 @@
 <?php
-/********************************************************************
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-@Author			John Hoddy <john.hoddy@iconic-publishing.com>
-@Website		https://www.iconic-publishing.com
-@Created		Monday, 2nd April, 2018
-
-© Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-Change Request ID: 
-
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-*********************************************************************/
 
 namespace Base\Controllers\Auth;
 
-use Base\{
-    Constructor\BaseConstructor,
-    Validation\Forms\Auth\AuthForm,
-    Models\User\User,
-    Services\Mail\Reset,
-    Helpers\Session
-};
-use Psr\Http\Message\{
-    ServerRequestInterface as Request,
-    ResponseInterface as Response
-};
+use Base\Helpers\Session;
+use Base\Models\User\User;
+use Base\Services\Mail\Reset;
+use Base\Constructor\BaseConstructor;
+use Psr\Http\Message\ResponseInterface;
+use Base\Validation\Forms\Auth\AuthForm;
+use Psr\Http\Message\ServerRequestInterface;
 
 class AuthResetPasswordController extends BaseConstructor {
 	
-    public function getResetPassword(Request $request, Response $response, $args) {
+    public function getResetPassword(ServerRequestInterface $request, ResponseInterface $response, $args) {
         $email = $args['email_address'];
         $user = User::where('email_address', $email)->first();
 
@@ -39,7 +23,7 @@ class AuthResetPasswordController extends BaseConstructor {
         return $this->view->render($response, 'auth/reset-password.php', compact('user'));
     }
 
-    public function postResetPassword(Request $request, Response $response, $args) {
+    public function postResetPassword(ServerRequestInterface $request, ResponseInterface $response, $args) {
         $email_address = $args['email_address'];
 
         $validation = $this->validator->validate($request, AuthForm::resetPasswordRules());

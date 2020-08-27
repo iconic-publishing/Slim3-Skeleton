@@ -10,7 +10,7 @@
 	<div class="container padding-xs">
 		<div class="row">
 			<div class="col-lg-8">
-				<h1>{{ trans('index.welcome') }}</h1>
+				<h1>Skeleton</h1>
 
 				<hr>
 
@@ -49,24 +49,6 @@
 
 			<div class="col-lg-4">
 				<h2>Sample Pages</h2>
-
-				<hr>
-
-				<h4>Language Switcher</h4>
-
-				{% set locales = config.locales %}
-
-				{% for locale, name in locales %}
-					{% if locale() != locale %}
-						<a href="switcher/{{ locale }}">{{ name }}</a> |
-					{% endif %}
-				{% endfor %}
-
-				<hr>
-
-				<h4>Currency Converter</h4>
-				
-				<p>{{ currency.convert(2, 'USD', 'GBP') | json_encode() }}</p>
 
 				<hr>
 

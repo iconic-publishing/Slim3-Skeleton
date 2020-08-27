@@ -1,39 +1,23 @@
 <?php
-/********************************************************************
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-@Author			John Hoddy <john.hoddy@iconic-publishing.com>
-@Website		https://www.iconic-publishing.com
-@Created		Monday, 2nd April, 2018
-
-© Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-Change Request ID: 
-
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-*********************************************************************/
 
 namespace Base\Controllers\Auth;
 
-use Base\{
-    Constructor\BaseConstructor,
-    Validation\Forms\Auth\AuthForm,
-    Models\User\User,
-    Helpers\Session,
-    Helpers\Cookie
-};
-use Psr\Http\Message\{
-    ServerRequestInterface as Request,
-    ResponseInterface as Response
-};
 use Carbon\Carbon;
+use Base\Helpers\Cookie;
+use Base\Helpers\Session;
+use Base\Models\User\User;
+use Base\Constructor\BaseConstructor;
+use Psr\Http\Message\ResponseInterface;
+use Base\Validation\Forms\Auth\AuthForm;
+use Psr\Http\Message\ServerRequestInterface;
 
 class AuthLoginController extends BaseConstructor {
 
-    public function getLogin(Request $request, Response $response) {
+    public function getLogin(ServerRequestInterface $request, ResponseInterface $response) {
         return $this->view->render($response, 'auth/login.php');
     }
 
-    public function postLogin(Request $request, Response $response) {
+    public function postLogin(ServerRequestInterface $request, ResponseInterface $response) {
         $validation = $this->validator->validate($request, AuthForm::loginRules());
 
         if($validation->fails()) {

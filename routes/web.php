@@ -1,34 +1,17 @@
 <?php
-/********************************************************************
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-@Author			John Hoddy <john.hoddy@iconic-publishing.com>
-@Website		https://www.iconic-publishing.com
-@Created		Monday, 2nd April, 2018
 
-© Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-Change Request ID: 
-
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-*********************************************************************/
-
-use Base\{
-    Controllers\Lang\TranslationController,
-    Controllers\StaticSiteController,
-    Controllers\BlogController,
-    Controllers\ContactController,
-    Controllers\Auth\AuthRegisterController,
-    Controllers\Auth\AuthActivateController,
-    Controllers\Auth\AuthLoginController,
-    Controllers\Auth\AuthLogoutController,
-    Controllers\Auth\AuthRecoverPasswordController,
-    Controllers\Auth\AuthResetPasswordController,
-    Controllers\Member\MemberController,
-    Controllers\Admin\AdminController,
-    Middleware\AuthMiddleware
-};
-
-$app->get('/switcher/{lang}', TranslationController::class . ':switcher')->setName('switcher');
+use Base\Middleware\AuthMiddleware;
+use Base\Controllers\BlogController;
+use Base\Controllers\ContactController;
+use Base\Controllers\StaticSiteController;
+use Base\Controllers\Admin\AdminController;
+use Base\Controllers\Member\MemberController;
+use Base\Controllers\Auth\AuthLoginController;
+use Base\Controllers\Auth\AuthLogoutController;
+use Base\Controllers\Auth\AuthActivateController;
+use Base\Controllers\Auth\AuthRegisterController;
+use Base\Controllers\Auth\AuthResetPasswordController;
+use Base\Controllers\Auth\AuthRecoverPasswordController;
 
 $app->get('/', StaticSiteController::class . ':index')->setName('index');
 

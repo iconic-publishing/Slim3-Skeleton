@@ -1,39 +1,23 @@
 <?php
-/********************************************************************
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-@Author			John Hoddy <john.hoddy@iconic-publishing.com>
-@Website		https://www.iconic-publishing.com
-@Created		Monday, 2nd April, 2018
-
-© Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-Change Request ID: 
-
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-*********************************************************************/
 
 namespace Base\Controllers\Auth;
 
-use Base\{
-    Constructor\BaseConstructor,
-    Validation\Forms\Auth\AuthForm,
-    Models\User\User,
-    Models\User\UserPermission,
-    Services\Mail\Activation,
-    Helpers\Session
-};
-use Psr\Http\Message\{
-    ServerRequestInterface as Request,
-    ResponseInterface as Response
-};
+use Base\Helpers\Session;
+use Base\Models\User\User;
+use Base\Services\Mail\Activation;
+use Base\Models\User\UserPermission;
+use Base\Constructor\BaseConstructor;
+use Psr\Http\Message\ResponseInterface;
+use Base\Validation\Forms\Auth\AuthForm;
+use Psr\Http\Message\ServerRequestInterface;
 
 class AuthRegisterController extends BaseConstructor {
 	
-    public function getRegister(Request $request, Response $response) {
+    public function getRegister(ServerRequestInterface $request, ResponseInterface $response) {
         return $this->view->render($response, 'auth/register.php');
     }
 
-    public function postRegister(Request $request, Response $response) {
+    public function postRegister(ServerRequestInterface $request, ResponseInterface $response) {
         $validation = $this->validator->validate($request, AuthForm::registerRules());
 
         if($validation->fails()) {

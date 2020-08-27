@@ -1,60 +1,33 @@
 <?php
-/********************************************************************
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-@Author			John Hoddy <john.hoddy@iconic-publishing.com>
-@Website		https://www.iconic-publishing.com
-@Created		Monday, 2nd April, 2018
 
-© Copyright 2014 - 2018 Iconic Publishing Co Ltd. All Rights Reserved
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-Change Request ID: 
-
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-*********************************************************************/
-
-use Dotenv\{
-    Dotenv,
-    Exception\InvalidPathException
-};
-use Slim\{
-    App,
-    Views\TwigExtension,
-    Flash\Messages as Flash,
-    Csrf\Guard as Csrf
-};
+use Slim\App;
+use Dotenv\Dotenv;
+use Base\Auth\Auth;
+use Slim\Csrf\Guard;
+use Base\Helpers\Hash;
+use Base\Services\Sms;
+use Base\View\Factory;
 use Noodlehaus\Config;
-use Illuminate\{
-    Database\Capsule\Manager as Capsule,
-    Translation\FileLoader,
-    Translation\Translator,
-    Filesystem\Filesystem,
-    Pagination\LengthAwarePaginator,
-    Pagination\Paginator
-};
-use Base\{
-    Helpers\Session, 
-    Helpers\Input,
-    Helpers\Hash,
-    View\Extensions\TranslationExtension,
-    View\Extensions\DebugExtension,
-    View\Factory,
-    Auth\Auth,
-    Plugins\Select,
-    Plugins\CurrencyConverter as Currency,
-    Plugins\Upload,
-    Validation\Validator,
-    Services\Mail\Mailer\Mailer,
-    Services\Sms,
-    Services\Mailchimp,
-    ErrorHandlers\NotFoundHandler,
-    ErrorHandlers\ErrorHandler,
-    Middleware\OfflineMiddleware,
-    Middleware\ValidationErrorsMiddleware,
-    Middleware\OldInputMiddleware,
-    Middleware\CsrfViewMiddleware,
-    Middleware\CsrfStatusMiddleware
-};
+use Base\Helpers\Input;
+use Base\Plugins\Select;
+use Base\Plugins\Upload;
+use Mailchimp\Mailchimp;
+use Slim\Flash\Messages;
+use Slim\Views\TwigExtension;
+use Base\Validation\Validator;
+use Illuminate\Pagination\Paginator;
+use Base\Services\Mail\Mailer\Mailer;
+use Base\Middleware\OfflineMiddleware;
 use Respect\Validation\Validator as v;
+use Base\ErrorHandlers\NotFoundHandler;
+use Base\Middleware\CsrfViewMiddleware;
+use Base\Middleware\OldInputMiddleware;
+use Base\View\Extensions\DebugExtension;
+use Illuminate\Database\Capsule\Manager;
+use Base\Middleware\CsrfStatusMiddleware;
+use Dotenv\Exception\InvalidPathException;
+use Base\Middleware\ValidationErrorsMiddleware;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 //session_cache_limiter(getenv('SESSION_CACHE_LIMITER'));
 session_start();
@@ -84,26 +57,13 @@ $container['config'] = function ($container) {
 date_default_timezone_set($container->config->get('app.timezone'));
 ini_set('display_errors', $container->config->get('app.displayErrors'));
 
-$capsule = new Capsule;
+$capsule = new Manager;
 $capsule->addConnection($container->config->get('database'));
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
 $container['db'] = function ($container) use ($capsule) {
     return $capsule;
-};
-
-$container['translator'] = function ($container) {
-    $fallback = $container->config->get('lang.fallback_locale');
-
-    $loader = new FileLoader(
-        new Filesystem(), $container->config->get('lang.path')
-    );
-
-    $translator = new Translator($loader, $_SESSION['lang'] ?? $fallback);
-    $translator->setFallback($fallback);
-
-    return $translator;
 };
 
 $container['view'] = function ($container) {
@@ -119,13 +79,11 @@ $container['view'] = function ($container) {
     );
 
     $view->addExtension(new TwigExtension($container->get('router'), $basePath));
-    $view->addExtension(new TranslationExtension($container['translator']));
     $view->addExtension(new DebugExtension());
     $view->getEnvironment()->addGlobal('config', $container['config']);
     $view->getEnvironment()->addGlobal('auth', $container['auth']);
     $view->getEnvironment()->addGlobal('flash', $container['flash']);
     $view->getEnvironment()->addGlobal('select', $container['select']);
-    $view->getEnvironment()->addGlobal('currency', $container['currency']);
 
     return $view;
 };
@@ -149,15 +107,11 @@ $container['auth'] = function ($container) {
 };
 
 $container['flash'] = function ($container) {
-    return new Flash;
+    return new Messages;
 };
 
 $container['select'] = function ($container) {
     return new Select;
-};
-
-$container['currency'] = function ($container) {
-    return new Currency($container);
 };
 
 $container['hash'] = function ($container) {
@@ -199,7 +153,7 @@ $container['errorHandler'] = function ($container) {
 };
 */
 $container['csrf'] = function ($container) {
-    $csrf = new Csrf;
+    $csrf = new Guard;
     $csrf->setFailureCallable(function ($request, $response, $next) {
         $request = $request->withAttribute('csrf_status', false);
         return $next($request, $response);
