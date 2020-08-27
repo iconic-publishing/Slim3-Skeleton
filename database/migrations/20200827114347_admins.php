@@ -8,14 +8,14 @@ class Admins extends Migration {
     public function up() {
         $this->schema->create('admins', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('user_id')->unsigned()->index();
-			$table->string('first_name', 255);
-			$table->string('last_name', 255)->nullable();
-			$table->string('mobile_number', 255)->nullable();
-			$table->string('avatar', 255)->nullable();
-			$table->timestamps();
-			
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('user_id')->unsigned()->index();
+            $table->string('first_name', 255);
+            $table->string('last_name', 255)->nullable();
+            $table->string('mobile_number', 255)->nullable();
+            $table->string('avatar', 255)->nullable();
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

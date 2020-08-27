@@ -8,7 +8,7 @@ class Roles extends Migration {
     public function up() {
         $this->schema->create('roles', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('role_name');
+            $table->string('role_name');
             $table->timestamps();
         });
     }

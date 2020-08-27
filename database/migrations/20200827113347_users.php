@@ -8,20 +8,20 @@ class Users extends Migration {
     public function up() {
         $this->schema->create('users', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('username', 20);
-			$table->string('email_address', 255);
-			$table->string('email_address_verified', 255)->nullable();
-			$table->string('password', 255)->nullable();
-			$table->string('token', 255)->nullable();
-			$table->boolean('active');
-			$table->boolean('locked');
-			$table->string('active_hash', 255)->nullable();
-			$table->string('recover_hash', 255)->nullable();
-			$table->ipAddress('register_ip');
-			$table->ipAddress('login_ip')->nullable();
-			$table->dateTime('login_time')->nullable();
+            $table->string('username', 20);
+            $table->string('email_address', 255);
+            $table->string('email_address_verified', 255)->nullable();
+            $table->string('password', 255)->nullable();
+            $table->string('token', 255)->nullable();
+            $table->boolean('active');
+            $table->boolean('locked');
+            $table->string('active_hash', 255)->nullable();
+            $table->string('recover_hash', 255)->nullable();
+            $table->ipAddress('register_ip');
+            $table->ipAddress('login_ip')->nullable();
+            $table->dateTime('login_time')->nullable();
             $table->softDeletes();
-			$table->timestamps();
+            $table->timestamps();
         });
     }
 
