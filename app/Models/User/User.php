@@ -2,126 +2,89 @@
 
 namespace Base\Models\User;
 
+use Base\Models\User\Role;
+use Base\Models\Customer\Customer;
 use Illuminate\Database\Eloquent\Model;
-use Base\Models\User\UserPermission;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model {
+    
+    use SoftDeletes;
 	
+    protected $dates = ['deleted_at'];
+    
     protected $table = 'users';
 
     protected $fillable = [
         'username',
         'email_address',
-        'first_name',
-        'last_name',
-        'mobile_number',
+        'email_address_verified',
         'password',
         'token',
         'active',
         'locked',
         'active_hash',
         'recover_hash',
-        'remember_identifier',
-        'remember_token'
+        'register_ip',
+        'login_ip',
+        'login_time'
     ];
 
-    public function permissions() {
-        return $this->hasOne(UserPermission::class, 'user_id');
+    public function role() {
+        return $this->belongsToMany(Role::class, 'role_user')->withTimestamps();
     }
 
-    public function hasPermission($permission) {
-        return (bool) $this->permissions->{$permission};
-    }
+    public function customer() {
+		return $this->hasOne(Customer::class, 'user_id');
+	}
 
-    public function isAdministrator() {
-        return $this->hasPermission('is_administrator');
-    }
-
-    public function isAdmin() {
-        return $this->hasPermission('is_admin');
-    }
-
-    public function isStaff() {
-        return $this->hasPermission('is_staff');
-    }
-
-    public function isUser() {
-        return $this->hasPermission('is_user');
-    }
-
-    public function isGroup() {
-        if($this->isAdministrator() || $this->isAdmin() || $this->isStaff()) {
-            return $this;
-        }
-    }
-
-    public function isUserType() {
-        if($this->isAdministrator()) {
-            return 'You are an Administrator';
-        } else if($this->isAdmin()) {
-            return 'You are Admin Staff';
-        } else if($this->isStaff()) {
-            return 'You are Staff';
-        } else {
-            return 'You are a Member';
-        }
-    }
-
-    public function activateAccount() {
-        $this->update([
-            'active' => true,
+    public function activateAccount($password) {
+		$this->update([
+			'email_address_verified' => null,
+			'password' => $password,
+			'active' => true,
             'locked' => false,
-            'active_hash' => null
-        ]);
-    }
-
-    public function updateRememberCredentials($identifier, $token) {
-        $this->update([
-            'remember_identifier' => $identifier,
-            'remember_token' => $token
-        ]);
-    }
-
-    public function removeRememberCredentials() {
-        $this->updateRememberCredentials(null, null);
-    }
-
-    public function createLoginToken($token) {
-        $this->update([
-            'token' => $token
-        ]);
-    }
-
-    public function removeLoginToken() {
-        $this->createLoginToken(null);
-    }
-
-    public function getFirstName() {
-        if($this->first_name) {
-            return $this->first_name;
-        }
-
-        return null;
-    }
-
-    public function getFullName() {
-        if($this->first_name && $this->last_name) {
-            return "{$this->first_name} {$this->last_name}";
-        }
-
-        if($this->first_name) {
-            return $this->first_name;
-        }
-
-        return null;
-    }
-
-    public function getNameOrUsername() {
-        return $this->getFullName() ?: $this->username;
-    }
-
-    public function getFirstNameOrUsername() {
-        return $this->first_name ?: $this->username;
-    }
+			'active_hash' => null
+		]);
+	}
+	
+	public function verifyEmail() {
+		$this->update([
+			'email_address_verified' => null
+		]);
+	}
+	
+	public function createLoginToken($token) {
+		$this->update([
+			'token' => $token
+		]);
+	}
+	
+	public function removeLoginToken() {
+		$this->createLoginToken(null);
+	}
+	
+	public function createLoginIp($ip) {
+		$this->update([
+			'login_ip' => $ip
+		]);
+	}
+	
+	public function removeLoginIp() {
+		$this->createLoginIp(null);
+	}
+	
+	public function createLoginTime() {
+		$this->update([
+			'login_time' => date('Y-m-d H:i:s')
+		]);
+	}
+	
+	public function removeLoginTime() {
+		$this->update([
+			'login_time' => null,
+			'logout_time' => date('Y-m-d H:i:s')
+		]);
+	}
 
 }
