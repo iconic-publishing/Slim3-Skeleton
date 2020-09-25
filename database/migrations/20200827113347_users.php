@@ -20,6 +20,7 @@ class Users extends Migration {
             $table->ipAddress('register_ip');
             $table->ipAddress('login_ip')->nullable();
             $table->dateTime('login_time')->nullable();
+            $table->dateTime('last_login_time')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -14,7 +14,7 @@ class Verification extends Mailable {
     }
 	
     public function build() {
-        return $this->subject(getenv('MAILGUN_FROM_NAME', 'Company Name') . ' - Account Verification')
+        return $this->subject(getenv('MAIL_FROM_NAME', 'Company Name') . ' - Account Verification')
             ->view('includes/services/emails/verification.php')
             ->with([
                 'user' => $this->user

@@ -2,8 +2,6 @@
 
 namespace Base\Controllers\Auth;
 
-use Carbon\Carbon;
-use Base\Helpers\Cookie;
 use Base\Helpers\Session;
 use Base\Models\User\User;
 use Base\Constructor\BaseConstructor;
@@ -14,7 +12,7 @@ use Psr\Http\Message\ServerRequestInterface;
 class AuthLoginController extends BaseConstructor {
 
     public function getLogin(ServerRequestInterface $request, ResponseInterface $response) {
-        return $this->view->render($response, 'auth/login.php');
+        return $this->view->render($response, 'pages/auth/login.php');
     }
 
     public function postLogin(ServerRequestInterface $request, ResponseInterface $response) {
@@ -59,15 +57,6 @@ class AuthLoginController extends BaseConstructor {
             $size = $this->config->get('auth.token');
             $token = $this->hash->hashed($size);
             $user->createLoginToken($token);
-
-            if($request->getParam('remember') === 'on') {
-                $rememberIdentifier = $this->hash->hashed($size);
-                $rememberToken = $this->hash->hashed($size);
-
-                $user->updateRememberCredentials($rememberIdentifier, $rememberToken);
-
-                Cookie::put($this->config->get('auth.remember'), $rememberIdentifier . '___' . $rememberToken, Carbon::parse('+1 month')->timestamp);
-            }
 
             if($this->auth->user()->isGroup()) {
                 return $response->withRedirect($this->router->pathFor('admin', compact('token')));

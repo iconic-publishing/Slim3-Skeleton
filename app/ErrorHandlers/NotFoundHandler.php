@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 class NotFoundHandler extends BaseConstructor {
 	
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response) {
-        return $this->view->render($response, 'includes/errors/404.php')->withStatus(404)->withHeader('Content-Type', 'text/html');
+        return $this->view->render($response, 'components/errors/404.php')->withStatus(404)->withHeader('Content-Type', 'text/html');
     }
 	
 }

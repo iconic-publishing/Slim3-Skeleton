@@ -16,7 +16,7 @@ class Recover extends Mailable {
     }
 	
     public function build() {
-        return $this->subject(getenv('MAILGUN_FROM_NAME', 'Company Name') . ' - Password Recovery')
+        return $this->subject(getenv('MAIL_FROM_NAME', 'Company Name') . ' - Password Recovery')
             ->view('includes/services/emails/recover-password.php')
             ->with([
                 'user' => $this->user,

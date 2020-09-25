@@ -13,7 +13,7 @@ class Contact extends Mailable {
     }
 	
     public function build() {
-        return $this->subject(getenv('MAILGUN_FROM_NAME', 'Company Name') . ' - Website Enquiry')
+        return $this->subject(getenv('MAIL_FROM_NAME', 'Company Name') . ' - Website Enquiry')
             ->view('includes/services/emails/contact.php')
             ->with([
                 'data' => $this->data

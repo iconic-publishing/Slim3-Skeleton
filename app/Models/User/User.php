@@ -3,6 +3,7 @@
 namespace Base\Models\User;
 
 use Base\Models\User\Role;
+use Base\Models\Admin\Admin;
 use Base\Models\Customer\Customer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -27,7 +28,8 @@ class User extends Model {
         'recover_hash',
         'register_ip',
         'login_ip',
-        'login_time'
+		'login_time',
+		'last_login_time'
     ];
 
     public function role() {
@@ -36,6 +38,10 @@ class User extends Model {
 
     public function customer() {
 		return $this->hasOne(Customer::class, 'user_id');
+	}
+
+	public function admin() {
+		return $this->hasOne(Admin::class, 'user_id');
 	}
 
     public function activateAccount($password) {
@@ -83,7 +89,7 @@ class User extends Model {
 	public function removeLoginTime() {
 		$this->update([
 			'login_time' => null,
-			'logout_time' => date('Y-m-d H:i:s')
+			'last_login_time' => date('Y-m-d H:i:s')
 		]);
 	}
 

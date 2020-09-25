@@ -16,7 +16,7 @@ class Activation extends Mailable {
     }
 	
     public function build() {
-        return $this->subject(getenv('MAILGUN_FROM_NAME', 'Company Name') . ' - Account Activation')
+        return $this->subject(getenv('MAIL_FROM_NAME', 'Company Name') . ' - Account Activation')
             ->view('includes/services/emails/activation.php')
             ->with([
                 'user' => $this->user,

@@ -20,7 +20,6 @@ use Base\Services\Mail\Mailer\Mailer;
 use Base\Middleware\OfflineMiddleware;
 use Base\ErrorHandlers\NotFoundHandler;
 use Base\Middleware\CsrfViewMiddleware;
-use Base\Middleware\OldInputMiddleware;
 use Base\Services\MailingList\MailChimp;
 use Base\View\Extensions\DebugExtension;
 use Illuminate\Database\Capsule\Manager;
@@ -91,7 +90,7 @@ LengthAwarePaginator::viewFactoryResolver(function () {
     return new Factory;
 });
 
-LengthAwarePaginator::defaultView('includes/pagination/pagination.php');
+LengthAwarePaginator::defaultView('components/pagination/pagination.php');
 
 Paginator::currentPathResolver(function () {
     return strtok($_SERVER['REQUEST_URI'], '?') ?: '/';
@@ -166,9 +165,11 @@ $container['csrf'] = function ($container) {
 };
 
 $app->add(new OfflineMiddleware($container))
-    ->add(new OldInputMiddleware($container))
     ->add(new CsrfViewMiddleware($container))
     ->add(new CsrfStatusMiddleware($container))
     ->add($container->csrf);
 
+require __DIR__ . '/../routes/admin.php';
+require __DIR__ . '/../routes/auth.php';
+require __DIR__ . '/../routes/member.php';
 require __DIR__ . '/../routes/web.php';

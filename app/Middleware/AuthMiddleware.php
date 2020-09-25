@@ -2,7 +2,6 @@
 
 namespace Base\Middleware;
 
-use Base\Helpers\Cookie;
 use Base\Constructor\BaseConstructor;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -18,11 +17,6 @@ class AuthMiddleware extends BaseConstructor {
         $token = $request->getAttribute('routeInfo')[2]['token'];
 
         if(!$this->hash->hashCheck($this->auth->user()->token, $token)) {
-            if(Cookie::exists($this->config->get('auth.remember'))) {
-                $this->auth->user()->removeRememberCredentials();
-                Cookie::delete($this->config->get('auth.remember'), null, 1);
-            }
-
             $this->auth->user()->removeLoginToken();
             $this->auth->user()->removeLoginIp();
             $this->auth->logout();

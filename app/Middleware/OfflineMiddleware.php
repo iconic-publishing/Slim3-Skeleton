@@ -13,7 +13,7 @@ class OfflineMiddleware extends BaseConstructor {
 
         if($offline) {
             $response = $response->withStatus(503)->withHeader('Retry-After', 3600);
-            return $this->view->render($response, 'includes/errors/offline.php');
+            return $this->view->render($response, 'components/errors/offline.php');
         }
 
         return $next($request, $response);
