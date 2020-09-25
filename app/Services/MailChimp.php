@@ -8,7 +8,7 @@ use Base\Constructor\BaseConstructor;
 class MailChimp extends BaseConstructor {
 	
     public function subscribe($email, $firstname, $status) {
-        $apikey = $this->api();
+        $apikey = $this->config->get('mailchimp.api');
         $auth = base64_encode('user:' . $apikey);
 
         $data = [
@@ -58,10 +58,6 @@ class MailChimp extends BaseConstructor {
         curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
 
         return curl_exec($curl);
-    }
-
-    protected function api() {
-        return $this->config->get('mailchimp.api');
     }
 	
 }
