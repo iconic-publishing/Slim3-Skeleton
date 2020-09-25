@@ -5,14 +5,13 @@ use Dotenv\Dotenv;
 use Base\Auth\Auth;
 use Slim\Csrf\Guard;
 use Base\Helpers\Hash;
-use Base\Services\Sms;
 use Base\View\Factory;
 use Noodlehaus\Config;
 use Base\Helpers\Input;
 use Base\Plugins\Select;
 use Base\Plugins\Upload;
-use Mailchimp\Mailchimp;
 use Slim\Flash\Messages;
+use Base\Services\Twilio\Sms;
 use Slim\Views\TwigExtension;
 use Base\Validation\Validator;
 use Base\Services\PHPMailer\Email;
@@ -22,6 +21,7 @@ use Base\Middleware\OfflineMiddleware;
 use Base\ErrorHandlers\NotFoundHandler;
 use Base\Middleware\CsrfViewMiddleware;
 use Base\Middleware\OldInputMiddleware;
+use Base\Services\MailingList\MailChimp;
 use Base\View\Extensions\DebugExtension;
 use Illuminate\Database\Capsule\Manager;
 use Base\Middleware\CsrfStatusMiddleware;
@@ -140,7 +140,7 @@ $container['sms'] = function ($container) {
 };
 
 $container['mailchimp'] = function ($container) {
-    return new Mailchimp($container);
+    return new MailChimp($container);
 };
 
 $container['upload'] = function ($container) {

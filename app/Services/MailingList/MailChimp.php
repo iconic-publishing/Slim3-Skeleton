@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Services;
+namespace Base\Services\MailingList;
 
 use Base\Helpers\Filter;
 use Base\Constructor\BaseConstructor;

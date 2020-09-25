@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Services;
+namespace Base\Services\Twilio;
 
 use Twilio\Rest\Client;
 use Base\Constructor\BaseConstructor;
