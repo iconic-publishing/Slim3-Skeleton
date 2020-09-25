@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdcd4e511f58cca7bbbf41fb91baaeab",
+    "content-hash": "3eab2e01ad932c25ccaca7b4b72ca0d4",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -1278,6 +1278,74 @@
             "time": "2018-07-02T15:55:56+00:00"
         },
         {
+            "name": "phpmailer/phpmailer",
+            "version": "v6.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPMailer/PHPMailer.git",
+                "reference": "2c2370ba3df7034f9eb7b8f387c97b52b2ba5ad0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/2c2370ba3df7034f9eb7b8f387c97b52b2ba5ad0",
+                "reference": "2c2370ba3df7034f9eb7b8f387c97b52b2ba5ad0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-filter": "*",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^1.2",
+                "friendsofphp/php-cs-fixer": "^2.2",
+                "phpunit/phpunit": "^4.8 || ^5.7"
+            },
+            "suggest": {
+                "ext-mbstring": "Needed to send email in multibyte encoding charset",
+                "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
+                "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
+                "psr/log": "For optional PSR-3 debug logging",
+                "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
+                "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPMailer\\PHPMailer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-only"
+            ],
+            "authors": [
+                {
+                    "name": "Marcus Bointon",
+                    "email": "phpmailer@synchromedia.co.uk"
+                },
+                {
+                    "name": "Jim Jagielski",
+                    "email": "jimjag@gmail.com"
+                },
+                {
+                    "name": "Andy Prevost",
+                    "email": "codeworxtech@users.sourceforge.net"
+                },
+                {
+                    "name": "Brent R. Matzelle"
+                }
+            ],
+            "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "funding": [
+                {
+                    "url": "https://github.com/synchro",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-07-14T18:50:27+00:00"
+        },
+        {
             "name": "pimple/pimple",
             "version": "v3.2.3",
             "source": {
@@ -1647,6 +1715,55 @@
                 "phinx"
             ],
             "time": "2017-12-23T06:48:51+00:00"
+        },
+        {
+            "name": "sameer-shelavale/php-countries-array",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sameer-shelavale/php-countries-array.git",
+                "reference": "5f868e30ea694c5be4d7d09a58f019fd07146347"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sameer-shelavale/php-countries-array/zipball/5f868e30ea694c5be4d7d09a58f019fd07146347",
+                "reference": "5f868e30ea694c5be4d7d09a58f019fd07146347",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "SameerShelavale\\PhpCountriesArray\\": "src/"
+                },
+                "psr-4": {
+                    "SameerShelavale\\PhpCountriesArray\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Sameer Shelavale",
+                    "email": "samiirds@gmail.com"
+                }
+            ],
+            "description": "PHP class to get array of countries names with ISO_3166-1 alpha-2, alpha-3, numeric codes, ISD codes and continent",
+            "keywords": [
+                "ISD Codes",
+                "ISO_3166-1",
+                "List of countries",
+                "PHP countries array",
+                "alpha-2",
+                "alpha-3",
+                "continent",
+                "countries array"
+            ],
+            "time": "2019-02-18T09:26:26+00:00"
         },
         {
             "name": "slim/csrf",
@@ -3185,6 +3302,47 @@
                 "twilio"
             ],
             "time": "2019-08-05T16:26:55+00:00"
+        },
+        {
+            "name": "verot/class.upload.php",
+            "version": "2.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/verot/class.upload.php.git",
+                "reference": "bec90d3c3a1e60f9bf066c0595c90a3dc9c143e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/verot/class.upload.php/zipball/bec90d3c3a1e60f9bf066c0595c90a3dc9c143e0",
+                "reference": "bec90d3c3a1e60f9bf066c0595c90a3dc9c143e0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/class.upload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Verot",
+                    "email": "colin@verot.net"
+                }
+            ],
+            "description": "This PHP class uploads files and manipulates images very easily.",
+            "homepage": "http://www.verot.net/php_class_upload.htm",
+            "keywords": [
+                "gd",
+                "upload"
+            ],
+            "time": "2020-01-12T21:16:22+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

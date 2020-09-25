@@ -15,10 +15,10 @@ use Mailchimp\Mailchimp;
 use Slim\Flash\Messages;
 use Slim\Views\TwigExtension;
 use Base\Validation\Validator;
+use Base\Services\PHPMailer\Email;
 use Illuminate\Pagination\Paginator;
 use Base\Services\Mail\Mailer\Mailer;
 use Base\Middleware\OfflineMiddleware;
-use Respect\Validation\Validator as v;
 use Base\ErrorHandlers\NotFoundHandler;
 use Base\Middleware\CsrfViewMiddleware;
 use Base\Middleware\OldInputMiddleware;
@@ -26,7 +26,6 @@ use Base\View\Extensions\DebugExtension;
 use Illuminate\Database\Capsule\Manager;
 use Base\Middleware\CsrfStatusMiddleware;
 use Dotenv\Exception\InvalidPathException;
-use Base\Middleware\ValidationErrorsMiddleware;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 //session_cache_limiter(getenv('SESSION_CACHE_LIMITER'));
@@ -132,6 +131,10 @@ $container['mail'] = function ($container) {
     return (new Mailer($swift, $container->view))->alwaysFrom($container->config->get('mail.from.address'), $container->config->get('mail.from.name'));
 };
 
+$container['mailer'] = function ($container) {
+    return new Email($container);
+};
+
 $container['sms'] = function ($container) {
     return new Sms($container);
 };
@@ -162,10 +165,7 @@ $container['csrf'] = function ($container) {
     return $csrf;
 };
 
-v::with('Base\\Validation\\Rules\\');
-
 $app->add(new OfflineMiddleware($container))
-    ->add(new ValidationErrorsMiddleware($container))
     ->add(new OldInputMiddleware($container))
     ->add(new CsrfViewMiddleware($container))
     ->add(new CsrfStatusMiddleware($container))

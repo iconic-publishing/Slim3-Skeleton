@@ -2,7 +2,7 @@
 
 namespace Base\Plugins;
 
-use Base\Plugins\Countries;
+use SameerShelavale\PhpCountriesArray\CountriesArray;
 
 class Select {
 	
@@ -16,7 +16,7 @@ class Select {
     }
 
     public function country() {
-        return Countries::get();
+        return CountriesArray::get();
     }
 
     public function department() {

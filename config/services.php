@@ -3,14 +3,14 @@
 return [
 
     'mail' => [
-        'host' => getenv('MAILGUN_HOST'),
-        'port' => getenv('MAILGUN_PORT'),
-        'encryption' => getenv('MAILGUN_ENCRYPTION'),
-        'username' => getenv('MAILGUN_USERNAME'),
-        'password' => getenv('MAILGUN_PASSWORD'),
+        'host' => getenv('MAIL_HOST'),
+        'port' => getenv('MAIL_PORT'),
+        'encryption' => getenv('MAIL_ENCRYPTION'),
+        'username' => getenv('MAIL_USERNAME'),
+        'password' => getenv('MAIL_PASSWORD'),
         'from' => [
-            'address' => getenv('MAILGUN_FROM_ADDRESS'),
-            'name' => getenv('MAILGUN_FROM_NAME')
+            'address' => getenv('MAIL_FROM_ADDRESS'),
+            'name' => getenv('MAIL_FROM_NAME')
         ]
     ],
 
@@ -22,10 +22,14 @@ return [
     ],
 
     'recaptcha' => [
-        'siteKey' => getenv('RECAPTCHA_SITE_KEY'),
-        'secretKey' => getenv('RECAPTCHA_SECRET_KEY'),
-        'locale' => getenv('RECAPTCHA_LOCALE', 'en')
-    ],
+		'invisible' => [
+			'siteKey' => getenv('RECAPTCHA_INVISIBLE_SITE_KEY'),
+			'secretKey' => getenv('RECAPTCHA_INVISIBLE_SECRET_KEY'),
+			'badge' => getenv('RECAPTCHA_INVISIBLE_BADGE')
+        ],
+        
+		'locale' => getenv('RECAPTCHA_LOCALE', 'en')
+	],
 
     'gmaps' => [
         'api' => getenv('GMAPS_API')
