@@ -34,21 +34,31 @@
 				
 				<h4>Features</h4>
 				
-				<ul class="unstyled">
-					<li>Slim 3</li>
-					<li>Slim Flash Messages</li>
-					<li>Slim CSRF</li>
-					<li>Twig Views</li>
-					<li>Bootstrap 4.1.0</li>
-					<li>Font Awesome 4.7.0</li>
-					<li>Swift Mailer</li>
-					<li>Mailgun API</li>
-					<li>Twilio SMS</li>
-					<li>MailChimp</li>
-					<li>Stripe <i class="fa fa-cc-stripe" aria-hidden="true"></i></li>
-					<li>Google Invisible reCaptcha</li>
-					<li>jQuery Form Validation</li>
-				</ul>
+				<div class="row">
+					<div class="col-lg-6">
+						<ul class="unstyled">
+							<li>Slim 3</li>
+							<li>Slim Flash Messages</li>
+							<li>Slim CSRF</li>
+							<li>Twig Views</li>
+							<li>Bootstrap 4.1.0</li>
+							<li>Font Awesome 4.7.0</li>
+							<li>Swift Mailer</li>
+						</ul>
+					</div>
+
+					<div class="col-lg-6">
+						<ul class="unstyled">
+							<li>Mailgun API</li>
+							<li>Twilio SMS API</li>
+							<li>Number Verify API</li>
+							<li>MailChimp API</li>
+							<li>Stripe API <i class="fa fa-cc-stripe" aria-hidden="true"></i></li>
+							<li>Google Invisible reCaptcha</li>
+							<li>jQuery Form Validation</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 
 			<div class="col-lg-4">
