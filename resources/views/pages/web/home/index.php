@@ -53,7 +53,6 @@
 							<li>Twilio SMS API</li>
 							<li>Number Verify API</li>
 							<li>MailChimp API</li>
-							<li>Stripe API <i class="fa fa-cc-stripe" aria-hidden="true"></i></li>
 							<li>Google Invisible reCaptcha</li>
 							<li>jQuery Form Validation</li>
 						</ul>

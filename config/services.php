@@ -35,12 +35,6 @@ return [
         'api' => getenv('GMAPS_API')
     ],
 
-    'stripe' => [
-        'secret' => getenv('STRIPE_SECRET'),
-        'public' => getenv('STRIPE_PUBLIC'),
-        'currency' => getenv('STRIPE_CURRENCY', 'USD')
-    ],
-
     'mailchimp' => [
         'api' => getenv('MAILCHIMP_API'),
         'list' => [
