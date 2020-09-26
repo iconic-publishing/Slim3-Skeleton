@@ -3,9 +3,9 @@
 namespace Base\Controllers\Auth;
 
 use Base\Models\User\User;
-use Base\Services\Mail\Recover;
 use Base\Constructor\BaseConstructor;
 use Psr\Http\Message\ResponseInterface;
+use Base\Services\Mail\Build\Auth\Recover;
 use Psr\Http\Message\ServerRequestInterface;
 
 class AuthRecoverPasswordController extends BaseConstructor {
@@ -35,7 +35,7 @@ class AuthRecoverPasswordController extends BaseConstructor {
             Send SMS to User
             */
             $number = $user->mobile_number;
-            $body = $this->view->fetch('includes/services/sms/recover-password.php', compact('user'));
+            $body = $this->view->fetch('components/services/sms/auth/recover-password.php', compact('user'));
             $this->sms->send($number, $body);
 
             $this->flash->addMessage('success', $this->config->get('messages.recover.success'));

@@ -8,9 +8,11 @@ use Base\Helpers\Hash;
 use Base\View\Factory;
 use Noodlehaus\Config;
 use Base\Helpers\Input;
+use Base\Helpers\Token;
 use Base\Plugins\Select;
 use Base\Plugins\Upload;
 use Slim\Flash\Messages;
+use Base\Helpers\Permission;
 use Base\Services\Twilio\Sms;
 use Slim\Views\TwigExtension;
 use Base\Validation\Validator;
@@ -80,6 +82,7 @@ $container['view'] = function ($container) {
     $view->addExtension(new DebugExtension());
     $view->getEnvironment()->addGlobal('config', $container['config']);
     $view->getEnvironment()->addGlobal('auth', $container['auth']);
+    $view->getEnvironment()->addGlobal('permission', $container['permission']);
     $view->getEnvironment()->addGlobal('flash', $container['flash']);
     $view->getEnvironment()->addGlobal('select', $container['select']);
 
@@ -102,6 +105,14 @@ Paginator::currentPageResolver(function () {
 
 $container['auth'] = function ($container) {
     return new Auth($container);
+};
+
+$container['token'] = function ($container) {
+    return new Token($container);
+};
+
+$container['permission'] = function ($container) {
+    return new Permission($container);
 };
 
 $container['flash'] = function ($container) {

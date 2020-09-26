@@ -9,10 +9,10 @@ class Customers extends Migration {
         $this->schema->create('customers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->string('title', 4);
+            $table->string('title', 4)->nullable();
             $table->string('first_name', 100);
             $table->string('last_name', 100);
-            $table->string('phone_number', 25);
+            $table->string('phone_number', 25)->nullable();
             $table->string('mobile_number', 25)->nullable();
             $table->boolean('sms');
             $table->boolean('gdpr');

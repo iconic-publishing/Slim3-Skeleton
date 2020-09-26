@@ -19,6 +19,7 @@ class AuthMiddleware extends BaseConstructor {
         if(!$this->hash->hashCheck($this->auth->user()->token, $token)) {
             $this->auth->user()->removeLoginToken();
             $this->auth->user()->removeLoginIp();
+            $this->auth->user()->removeLoginTime();
             $this->auth->logout();
 
             $this->flash->addMessage('warning', $this->config->get('messages.auth.info'));

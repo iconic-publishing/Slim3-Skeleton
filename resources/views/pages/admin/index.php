@@ -1,4 +1,4 @@
-{% extends 'includes/layout.php' %}
+{% extends 'layouts/admin-layout.php' %}
 
 {% block content %}
 
@@ -9,9 +9,9 @@
 			</div>
 
 			<div class="col-lg-12">
-				<h2>Admin Area | {{ user.isUserType() }}</h2>
+				<h2>Admin Area | {{ auth.user.admin.getFullName() }}</h2>
 
-				<p>Hi {{ user.getFirstNameOrUsername() }}, you are now signed in.</p>
+				<p>Hi {{ auth.user.admin.getFirstName() }}, you are now signed in.</p>
 			</div>
 		</div>
 	</div>

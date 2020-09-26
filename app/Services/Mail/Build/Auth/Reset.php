@@ -1,11 +1,11 @@
 <?php
 
-namespace Base\Services\Mail;
+namespace Base\Services\Mail\Build\Auth;
 
 use Base\Models\User\User;
 use Base\Services\Mail\Mailer\Mailable;
 
-class Verification extends Mailable {
+class Reset extends Mailable {
 	
     protected $user;
 
@@ -14,8 +14,8 @@ class Verification extends Mailable {
     }
 	
     public function build() {
-        return $this->subject(getenv('MAIL_FROM_NAME', 'Company Name') . ' - Account Verification')
-            ->view('includes/services/emails/verification.php')
+        return $this->subject(getenv('MAIL_FROM_NAME', 'Company Name') . ' - Password Reset')
+            ->view('components/services/emails/auth/reset-password.php')
             ->with([
                 'user' => $this->user
             ]);

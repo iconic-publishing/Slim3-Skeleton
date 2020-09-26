@@ -11,14 +11,20 @@
 
 				<hr>
 
-				{% include 'includes/messages/messages.php' %}
+				{% include 'components/messages/messages.php' %}
 
 				<form id="reset-form" action="{{ path_for('postResetPassword', {email_address: user.email_address}) }}" method="post" autocomplete="{{ config.app.autocomplete }}">
 					<div class="form-row">
-						<div class="col-lg-12 mb-3">
+						<div class="col-lg-6 mb-3">
 							<label>New Password <span class="red">*</span></label>
-							<input type="password" class="form-control" name="password">
+							<input type="password" class="form-control" name="password" id="password">
 							<label for="password" class="invalid-feedback error"></label>
+						</div>
+
+						<div class="col-lg-6 mb-3">
+							<label>Verify New Password <span class="red">*</span></label>
+							<input type="password" class="form-control" name="verify_new_password">
+							<label for="verify_new_password" class="invalid-feedback error"></label>
 						</div>
 
 						<div class="g-recaptcha" data-sitekey="{{ config.recaptcha.invisible.siteKey }}" data-callback="onSubmit" data-size="invisible" data-badge="{{ config.recaptcha.invisible.badge }}"></div>

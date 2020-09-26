@@ -1,4 +1,4 @@
-{% extends 'includes/layout.php' %}
+{% extends 'layouts/member-layout.php' %}
 
 {% block content %}
 
@@ -9,9 +9,9 @@
 			</div>
 
 			<div class="col-lg-12">
-				<h2>Members Area | {{ user.isUserType() }}</h2>
+				<h2>Members Area | {{ auth.user.customer.getFullName() | title }}</h2>
 
-				<p>Hi {{ user.getFirstNameOrUsername() }}, you are now signed in.</p>
+				<p>Hi {{ auth.user.customer.getFirstName() | title }}, you are now signed in.</p>
 			</div>
 		</div>
 	</div>

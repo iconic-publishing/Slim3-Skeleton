@@ -1,4 +1,4 @@
-Hi {{ user.getFirstNameOrUsername() }},
+Hi {{ user.customer.getFirstName() }},
 
 Thank you for signing up to {{ config.company.name }}.
     

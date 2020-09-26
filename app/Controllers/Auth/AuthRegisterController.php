@@ -4,11 +4,11 @@ namespace Base\Controllers\Auth;
 
 use Base\Helpers\Filter;
 use Base\Models\User\User;
-use Base\Services\Mail\Activation;
 use Base\Models\User\UserPermission;
 use Base\Constructor\BaseConstructor;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Base\Services\Mail\Build\Auth\Activation;
 
 class AuthRegisterController extends BaseConstructor {
 	
@@ -48,7 +48,7 @@ class AuthRegisterController extends BaseConstructor {
         Send SMS to New Registered User
         */
         $number = $request->getParam('mobile_number');
-        $body = $this->view->fetch('includes/services/sms/activation.php', compact('user', 'identifier'));
+        $body = $this->view->fetch('components/services/sms/auth/activation.php', compact('user', 'identifier'));
         $this->sms->send($number, $body);
 
         $this->flash->addMessage('success', $this->config->get('messages.register.success'));

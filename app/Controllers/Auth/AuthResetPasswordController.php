@@ -3,9 +3,9 @@
 namespace Base\Controllers\Auth;
 
 use Base\Models\User\User;
-use Base\Services\Mail\Reset;
 use Base\Constructor\BaseConstructor;
 use Psr\Http\Message\ResponseInterface;
+use Base\Services\Mail\Build\Auth\Reset;
 use Psr\Http\Message\ServerRequestInterface;
 
 class AuthResetPasswordController extends BaseConstructor {
@@ -44,7 +44,7 @@ class AuthResetPasswordController extends BaseConstructor {
             Send SMS to User
             */
             $number = $user->mobile_number;
-            $body = $this->view->fetch('includes/services/sms/reset-password.php', compact('user'));
+            $body = $this->view->fetch('components/services/sms/auth/reset-password.php', compact('user'));
             $this->sms->send($number, $body);
 
             $this->flash->addMessage('success', $this->config->get('messages.reset.success'));

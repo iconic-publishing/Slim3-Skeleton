@@ -1,4 +1,4 @@
-Hi {{ user.getFirstNameOrUsername() }},
+Hi {{ user.customer.getFirstName() }},
     
 You have requested to reset your password. If you did not request this, then please contact our Admin staff on {{ config.company.phone }} immediately.
    

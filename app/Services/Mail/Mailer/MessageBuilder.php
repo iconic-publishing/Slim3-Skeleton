@@ -32,7 +32,7 @@ class MessageBuilder {
     }
 
     public function body($body) {
-        $this->swiftMessage->addPart($body, 'text/plain');
+        $this->swiftMessage->addPart($body, getenv('MAIL_EMAIL_BODY'));
 
         return $this;
     }

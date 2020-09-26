@@ -4,10 +4,10 @@ namespace Base\Controllers\Web;
 
 use Base\Helpers\Filter;
 use ReCaptcha\ReCaptcha;
-use Base\Services\Mail\Contact;
 use PHPMailer\PHPMailer\Exception;
 use Base\Constructor\BaseConstructor;
 use Psr\Http\Message\ResponseInterface;
+use Base\Services\Mail\Build\Web\Contact;
 use Psr\Http\Message\ServerRequestInterface;
 
 class ContactController extends BaseConstructor {
@@ -57,7 +57,7 @@ class ContactController extends BaseConstructor {
             $number = $request->getParam('mobile_number'); // If sending to User
             */
             $number = $this->config->get('twilio.companyNumber'); // If sending to you or your company
-            $body = $this->view->fetch('includes/services/sms/contact.php', compact('data'));
+            $body = $this->view->fetch('components/services/sms/web/contact.php', compact('data'));
             $this->sms->send($number, $body);
 
             /*

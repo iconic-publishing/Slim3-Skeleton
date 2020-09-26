@@ -1,4 +1,4 @@
-Hi {{ user.getFirstNameOrUsername() }},
+Hi {{ user.customer.getFirstName() }},
     
 Your account was activated successfully. You can login with either your Email or Username below, and the Password you created:
 
@@ -15,5 +15,3 @@ If you have any questions or if you need assistance please contact us at {{ conf
 Thanks,    
 
 {{ config.company.name }} Team.
-
-***THIS IS AN AUTOMATED SMS PLEASE DO NOT REPLY***

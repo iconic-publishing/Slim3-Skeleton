@@ -44,10 +44,9 @@ class User extends Model {
 		return $this->hasOne(Admin::class, 'user_id');
 	}
 
-    public function activateAccount($password) {
+    public function activateAccount() {
 		$this->update([
 			'email_address_verified' => null,
-			'password' => $password,
 			'active' => true,
             'locked' => false,
 			'active_hash' => null

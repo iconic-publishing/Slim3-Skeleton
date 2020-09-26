@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Services\Mail;
+namespace Base\Services\Mail\Build\Web;
 
 use Base\Services\Mail\Mailer\Mailable;
 
@@ -14,7 +14,7 @@ class Contact extends Mailable {
 	
     public function build() {
         return $this->subject(getenv('MAIL_FROM_NAME', 'Company Name') . ' - Website Enquiry')
-            ->view('includes/services/emails/contact.php')
+            ->view('components/services/emails/web/contact.php')
             ->with([
                 'data' => $this->data
             ]);

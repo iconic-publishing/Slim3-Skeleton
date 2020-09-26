@@ -7,9 +7,11 @@
 		<meta name="robots" content="{{ config.meta.robots }}">
 		<meta name="copyright" content="{{ config.meta.copyright }}">
 		<meta name="author" content="{{ config.meta.author }}">
+
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 		<link rel="stylesheet" href="{{ base_url() }}/layouts/web/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="{{ base_url() }}/layouts/web/css/custom.css">
+		
 		<script src='https://www.google.com/recaptcha/api.js?hl={{ config.recaptcha.locale }}'></script>
 	</head>
 
@@ -252,11 +254,19 @@
 				rules: {
 					password: {
 						required: true
+					},
+					verify_new_password: {
+						required: true,
+						equalTo: '#password'
 					}
 				},
 				messages: {
 					password: {
 						required: 'New Password is required!'
+					},
+					verify_new_password: {
+						required: 'Password Verification is required!',
+						equalTo: 'Passwords do not match!'
 					}
 				},
 				submitHandler: function (form) {

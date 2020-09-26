@@ -36,8 +36,8 @@ class Customer extends Model {
 			return "{$this->title} {$this->first_name} {$this->last_name}";
 		}
 		
-		if($this->first_name) {
-			return $this->first_name;
+		if($this->first_name && $this->last_name) {
+			return "{$this->first_name} {$this->last_name}";
 		}
 		
 		return null;

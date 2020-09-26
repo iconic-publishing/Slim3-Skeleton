@@ -3,10 +3,10 @@
 namespace Base\Controllers\Auth;
 
 use Base\Models\User\User;
-use Base\Services\Mail\Verification;
 use Base\Constructor\BaseConstructor;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Base\Services\Mail\Build\Auth\Verification;
 
 class AuthActivateController extends BaseConstructor {
 	
@@ -33,7 +33,7 @@ class AuthActivateController extends BaseConstructor {
             Send SMS to User
             */
             $number = $user->mobile_number;
-            $body = $this->view->fetch('includes/services/sms/verification.php', compact('user', 'identifier'));
+            $body = $this->view->fetch('components/services/sms/auth/verification.php', compact('user', 'identifier'));
             $this->sms->send($number, $body);
 
             $this->flash->addMessage('success', $this->config->get('messages.activate.success'));

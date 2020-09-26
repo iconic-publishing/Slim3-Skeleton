@@ -2,11 +2,11 @@
 
 namespace Base\Controllers\Auth;
 
+use Base\Helpers\Filter;
 use Base\Helpers\Session;
 use Base\Models\User\User;
 use Base\Constructor\BaseConstructor;
 use Psr\Http\Message\ResponseInterface;
-use Base\Validation\Forms\Auth\AuthForm;
 use Psr\Http\Message\ServerRequestInterface;
 
 class AuthLoginController extends BaseConstructor {
@@ -16,13 +16,6 @@ class AuthLoginController extends BaseConstructor {
     }
 
     public function postLogin(ServerRequestInterface $request, ResponseInterface $response) {
-        $validation = $this->validator->validate($request, AuthForm::loginRules());
-
-        if($validation->fails()) {
-            $this->flash->addMessage('error', $this->config->get('messages.login.error'));
-            return $response->withRedirect($this->router->pathFor('getLogin'));
-        }
-
         $identifier = $request->getParam('email_or_username');
         $email_address = $request->getParam('email_address');
         $password = $request->getParam('password');
@@ -56,9 +49,13 @@ class AuthLoginController extends BaseConstructor {
 
             $size = $this->config->get('auth.token');
             $token = $this->hash->hashed($size);
-            $user->createLoginToken($token);
+            $ip = Filter::ip();
 
-            if($this->auth->user()->isGroup()) {
+            $user->createLoginToken($token);
+            $user->createLoginIp($ip);
+            $user->createLoginTime();
+
+            if($this->permission->administratorGroup() || $this->permission->adminGroup()) {
                 return $response->withRedirect($this->router->pathFor('admin', compact('token')));
             } else {
                 return $response->withRedirect($this->router->pathFor('member', compact('token')));
