@@ -94,7 +94,7 @@
 						required: 'Subject is required!'
 					},
 					message: {
-						required: 'message is required!'
+						required: 'Message is required!'
 					}
 				},
 				submitHandler: function (form) {
