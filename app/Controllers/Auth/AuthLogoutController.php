@@ -14,7 +14,7 @@ class AuthLogoutController extends BaseConstructor {
         $this->auth->user()->removeLoginTime();
         $this->auth->logout();
 
-        $this->flash->addMessage('warning', $this->config->get('messages.login.logout'));
+        $this->flash->addMessage('warning', $this->config->get('messages.logout.success'));
         return $response->withRedirect($this->router->pathFor('getLogin'));
     }
 	

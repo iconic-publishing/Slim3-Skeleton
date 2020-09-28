@@ -49,8 +49,11 @@ return [
             'notUser' => 'Could not sign you in with those details.',
             'notActive' => 'Account not activated. Please use the link in the email we have sent you.',
             'passwordReset' => 'You have requested a Password Reset. Please use the link in the email we have sent you.',
-            'locked' => 'Account Locked! Please contact our Admin Dept.',
-            'logout' => 'You have logged out successfully.'
+            'locked' => 'Account Locked! Please contact our Admin Dept.'
+        ],
+
+        'logout' => [
+            'success' => 'You have logged out successfully.'
         ]
     ]
 	
