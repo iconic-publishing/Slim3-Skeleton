@@ -21,6 +21,13 @@ return [
         'companyNumber' => getenv('TWILIO_COMPANY_NUMBER')
     ],
 
+    'number' => [
+        'verify' => [
+			'api' => getenv('NUMBER_VERIFY_API_KEY'),
+			'https' => getenv('NUMBER_VERIFY_HTTPS')
+        ]
+    ],
+
     'recaptcha' => [
 		'invisible' => [
 			'siteKey' => getenv('RECAPTCHA_INVISIBLE_SITE_KEY'),

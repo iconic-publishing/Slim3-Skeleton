@@ -15,7 +15,6 @@ use Slim\Flash\Messages;
 use Base\Helpers\Permission;
 use Base\Services\Twilio\Sms;
 use Slim\Views\TwigExtension;
-use Base\Validation\Validator;
 use Base\Services\PHPMailer\Email;
 use Illuminate\Pagination\Paginator;
 use Base\Services\Mail\Mailer\Mailer;
@@ -27,6 +26,7 @@ use Base\View\Extensions\DebugExtension;
 use Illuminate\Database\Capsule\Manager;
 use Base\Middleware\CsrfStatusMiddleware;
 use Dotenv\Exception\InvalidPathException;
+use Base\Services\NumberVerify\NumberVerify;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 //session_cache_limiter(getenv('SESSION_CACHE_LIMITER'));
@@ -127,8 +127,8 @@ $container['hash'] = function ($container) {
     return new Hash($container);
 };
 
-$container['validator'] = function ($container) {
-    return new Validator;
+$container['number'] = function ($container) {
+    return new NumberVerify($container);
 };
 
 $container['mail'] = function ($container) {

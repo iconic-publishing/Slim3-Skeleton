@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 		<link rel="stylesheet" href="{{ base_url() }}/layouts/web/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="{{ base_url() }}/layouts/web/css/custom.css">
+		<link rel="stylesheet" href="{{ base_url() }}/layouts/web/plugins/intl-tel-input/build/css/intlTelInput.min.css">
 		
 		<script src='https://www.google.com/recaptcha/api.js?hl={{ config.recaptcha.locale }}'></script>
 	</head>
@@ -26,6 +27,7 @@
 
 		<script src="{{ base_url() }}/layouts/web/plugins/jquery-validation-1.19.2/dist/jquery.validate.min.js"></script>
 		<script src="{{ base_url() }}/layouts/web/plugins/jquery-validation-1.19.2/dist/additional-methods.min.js"></script>
+		<script src="{{ base_url() }}/layouts/web/plugins/intl-tel-input/build/js/intlTelInput.min.js"></script>
 		<script>
 			var timeout = 2000;
 
@@ -55,7 +57,7 @@
 						required: true,
 						email: true
 					},
-					mobile_number: {
+					phone_number: {
 						required: true
 					},
 					country: {
@@ -68,6 +70,9 @@
 						required: true
 					},
 					message: {
+						required: true
+					},
+					gdpr: {
 						required: true
 					}
 				},
@@ -81,8 +86,8 @@
 					email_address: {
 						required: 'Email Address is required!'
 					},
-					mobile_number: {
-						required: 'Mobile Number is required!'
+					phone_number: {
+						required: 'Phone Number is required!'
 					},
 					country: {
 						required: 'Country is required!'
@@ -95,6 +100,9 @@
 					},
 					message: {
 						required: 'Message is required!'
+					},
+					gdpr: {
+						required: 'Please check the box to agrree to the Terms and Conditions'
 					}
 				},
 				submitHandler: function (form) {
@@ -129,7 +137,7 @@
 						required: true,
 						email: true
 					},
-					mobile_number: {
+					phone_number: {
 						required: true
 					},
 					password: {
@@ -150,7 +158,7 @@
 					email_address: {
 						required: 'Email Address is required!'
 					},
-					mobile_number: {
+					phone_number: {
 						required: 'Mobile Number is required!'
 					},
 					password: {
@@ -276,6 +284,47 @@
 					setTimeout(function () {
 						form.submit();
 					}, timeout);
+				}
+			});
+
+			var input = document.querySelector('#phone_number'),
+			iti = window.intlTelInput(input, {
+				allowDropdown: true,
+				autoHideDialCode: false,
+				autoPlaceholder: 'polite',
+				customContainer: '',
+				customPlaceholder: null,
+				dropdownContainer: null,
+				excludeCountries: [],
+				formatOnDisplay: true,
+				geoIpLookup: null,
+				hiddenInput: '',
+				initialCountry: '',
+				localizedCountries: null,
+				nationalMode: false,
+				onlyCountries: [],
+				placeholderNumberType: 'MOBILE',
+				preferredCountries: ['gb', 'us'],
+				separateDialCode: true,
+				utilsScript: '{{ base_url() }}/layouts/web/plugins/intl-tel-input/build/js/utils.js'
+			});
+
+			input.addEventListener('blur', function() {
+				if(input.value.trim()) {
+					if(iti.isValidNumber()) {
+						$('#valid-msg').html('<i class="fa fa-thumbs-up"></i> Valid Number');
+						$('#valid-msg').removeClass('softhide');
+						$('#phone_number').addClass('is-valid');
+						$('#error-msg').addClass('softhide');
+						$('button').prop('disabled', false);
+						$('#phone_number_valid').val(iti.getNumber());
+					} else {
+						$('#error-msg').html('<i class="fa fa-times"></i> Invalid Number');
+						$('#error-msg').removeClass('softhide');
+						$('#phone_number').addClass('is-invalid');
+						$('#valid-msg').addClass('softhide');
+						$('button').prop('disabled', true);
+					}
 				}
 			});
 		</script>

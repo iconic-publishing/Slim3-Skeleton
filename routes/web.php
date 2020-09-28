@@ -1,8 +1,8 @@
 <?php
 
-use Base\Controllers\Web\BlogController;
-use Base\Controllers\Web\ContactController;
-use Base\Controllers\Web\HomeController;
+use Base\Controllers\Web\Blog\BlogController;
+use Base\Controllers\Web\Home\HomeController;
+use Base\Controllers\Web\Contact\ContactController;
 
 $app->get('/', HomeController::class . ':index')->setName('index');
 

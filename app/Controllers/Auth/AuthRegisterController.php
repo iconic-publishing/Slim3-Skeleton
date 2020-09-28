@@ -36,8 +36,8 @@ class AuthRegisterController extends BaseConstructor {
             'title' => null,
             'first_name' => $request->getParam('first_name'),
             'last_name' => $request->getParam('last_name'),
-            'phone_number' => null,
-            'mobile_number' => $request->getParam('mobile_number'),
+            'phone_number' => $request->getParam('phone_number'),
+            'mobile_number' => null,
             'sms' => false,
             'gdpr' => false
         ]);

@@ -35,8 +35,12 @@
 
 						<div class="col-lg-6 mb-3">
 							<label>Mobile Number <small><i>(SMS Verification)</i></small> <span class="red">*</span></label>
-							<input type="text" class="form-control" name="mobile_number">
-							<label for="mobile_number" class="invalid-feedback error"></label>
+							<input type="text" class="form-control" name="phone_number" id="phone_number">
+							<label for="phone_number" class="invalid-feedback error"></label>
+
+							<input type="hidden" name="phone_number_valid" id="phone_number_valid" value="">
+							<span id="valid-msg" class="valid-number pull-right softhide text-success"></span>
+							<span id="error-msg" class="invalid-number pull-right softhide text-danger"></span>
 						</div>
 						
 						<div class="col-lg-6 mb-3">

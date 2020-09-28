@@ -35,8 +35,12 @@
 						
 						<div class="col-lg-6 mb-3">
 							<label>Mobile Number <span class="red">*</span></label>
-							<input type="text" class="form-control" name="mobile_number">
-							<label for="mobile_number" class="invalid-feedback error"></label>
+							<input type="text" class="form-control" name="phone_number" id="phone_number">
+							<label for="phone_number" class="invalid-feedback error"></label>
+
+							<input type="hidden" name="phone_number_valid" id="phone_number_valid" value="">
+							<span id="valid-msg" class="valid-number pull-right softhide text-success"></span>
+							<span id="error-msg" class="invalid-number pull-right softhide text-danger"></span>
 						</div>
 
 						<div class="col-lg-6 mb-3">
@@ -71,6 +75,14 @@
 							<label>Message <span class="red">*</span></label>
 							<textarea class="form-control" name="message" rows="8"></textarea>
 							<label for="message" class="invalid-feedback error"></label>
+						</div>
+
+						<div class="col-lg-12 mb-3">
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" name="gdpr" id="agree">
+								<label for="agree" class="custom-control-label">I agree that I have read the <a href="">Terms and Conditions</a></label>
+							</div>
+							<label for="gdpr" for="message" class="invalid-feedback error"></label>
 						</div>
 						
 						<div class="g-recaptcha" data-sitekey="{{ config.recaptcha.invisible.siteKey }}" data-callback="onSubmit" data-size="invisible" data-badge="{{ config.recaptcha.invisible.badge }}"></div>
