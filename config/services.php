@@ -2,6 +2,18 @@
 
 return [
 
+    'mailchimp' => [
+        'api' => getenv('MAILCHIMP_API'),
+        'server' => getenv('MAILCHIMP_SERVER'),
+        'list' => getenv('MAILCHIMP_LIST_ID'),
+        'gdpr' => [
+            'email' => getenv('MAILCHIMP_GDRP_EMAIL'),
+            'direct' => getenv('MAILCHIMP_GDRP_DIRECT'),
+            'ads' => getenv('MAILCHIMP_GDRP_ADS')
+        ],
+        'count' => getenv('MAILCHIMP_COUNT', 10000)
+    ],
+
     'mail' => [
         'host' => getenv('MAIL_HOST'),
         'port' => getenv('MAIL_PORT'),
@@ -14,6 +26,13 @@ return [
         ]
     ],
 
+    'number' => [
+        'verify' => [
+            'api' => getenv('NUMBER_VERIFY_API_KEY'),
+            'https' => getenv('NUMBER_VERIFY_HTTPS')
+        ]
+    ],
+
     'twilio' => [
         'sid' => getenv('TWILIO_SID'),
         'token' => getenv('TWILIO_TOKEN'),
@@ -21,39 +40,18 @@ return [
         'companyNumber' => getenv('TWILIO_COMPANY_NUMBER')
     ],
 
-    'number' => [
-        'verify' => [
-			'api' => getenv('NUMBER_VERIFY_API_KEY'),
-			'https' => getenv('NUMBER_VERIFY_HTTPS')
-        ]
-    ],
-
     'recaptcha' => [
-		'invisible' => [
-			'siteKey' => getenv('RECAPTCHA_INVISIBLE_SITE_KEY'),
-			'secretKey' => getenv('RECAPTCHA_INVISIBLE_SECRET_KEY'),
-			'badge' => getenv('RECAPTCHA_INVISIBLE_BADGE')
+        'invisible' => [
+            'siteKey' => getenv('RECAPTCHA_INVISIBLE_SITE_KEY'),
+            'secretKey' => getenv('RECAPTCHA_INVISIBLE_SECRET_KEY'),
+            'badge' => getenv('RECAPTCHA_INVISIBLE_BADGE')
         ],
         
-		'locale' => getenv('RECAPTCHA_LOCALE', 'en')
-	],
+        'locale' => getenv('RECAPTCHA_LOCALE', 'en')
+    ],
 
     'gmaps' => [
         'api' => getenv('GMAPS_API')
-    ],
-
-    'mailchimp' => [
-        'api' => getenv('MAILCHIMP_API'),
-        'list' => [
-            'server' => getenv('MAILCHIMP_LIST_SERVER'),
-            'name' => getenv('MAILCHIMP_LIST_NAME')
-        ],
-        'gdpr' => [
-            'email' => getenv('MAILCHIMP_GDRP_EMAIL'),
-            'direct' => getenv('MAILCHIMP_GDRP_DIRECT'),
-            'ads' => getenv('MAILCHIMP_GDRP_ADS')
-        ],
-        'count' => getenv('MAILCHIMP_COUNT', 10000)
     ]
 
 ];

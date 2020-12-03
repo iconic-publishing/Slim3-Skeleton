@@ -8,7 +8,7 @@ use Base\Constructor\BaseConstructor;
 
 class Email extends BaseConstructor {
 
-    public function sned($email, $fullName, $subject, $body) {
+    public function send($email, $fullName, $subject, $body) {
         $mail = new PHPMailer(true);
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();

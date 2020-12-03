@@ -51,6 +51,7 @@ class ContactController extends BaseConstructor {
                 $fullName = '';
                 $subject = 'You have a New Website Enquiry';
                 $body = $this->view->fetch('components/services/emails/web/contact.php', compact('data', 'verify', 'date', 'ip'));
+                $this->mailer->send($email, $fullName, $subject, $body);
             } catch (Exception $e) {
                 $this->flash->addMessage('error', 'Something went wrong with your submission. Please try again.');
                 return $response->withRedirect($this->router->pathFor('contact'));
