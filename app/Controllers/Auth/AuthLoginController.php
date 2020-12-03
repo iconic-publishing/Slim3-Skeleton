@@ -56,9 +56,9 @@ class AuthLoginController extends BaseConstructor {
             $user->createLoginTime();
 
             if($this->permission->administratorGroup() || $this->permission->adminGroup()) {
-                return $response->withRedirect($this->router->pathFor('admin', compact('token')));
+                return $response->withRedirect($this->router->pathFor('getAdmin', compact('token')));
             } else {
-                return $response->withRedirect($this->router->pathFor('member', compact('token')));
+                return $response->withRedirect($this->router->pathFor('getMember', compact('token')));
             }
         } else {
             $this->flash->addMessage('warning', $this->config->get('messages.login.notActive'));

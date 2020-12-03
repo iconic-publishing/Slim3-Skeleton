@@ -67,7 +67,7 @@
 
 				<ul>
 					<li><a href="{{ path_for('getBlogs') }}">View Sample Blog Page</a></li>
-					<li><a href="{{ path_for('contact') }}">View Sample Contact Page</a></li>
+					<li><a href="{{ path_for('getContact') }}">View Sample Contact Page</a></li>
 					<hr>
 					<li><a href="{{ path_for('getRegister') }}">View Sample Register Page</a></li>
 					<li><a href="{{ path_for('getLogin') }}">View Sample Login Page</a></li>

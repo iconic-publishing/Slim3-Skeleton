@@ -5,7 +5,7 @@
 	<div class="container padding-xs">
 		<div class="row justify-content-center">
 			<div class="col-lg-6">
-				<p><a href="{{ path_for('index') }}">Back to Homepage</a></p>
+				<p><a href="{{ path_for('getHome') }}">Back to Homepage</a></p>
 
 				<h2>Reset Password Page</h2>
 

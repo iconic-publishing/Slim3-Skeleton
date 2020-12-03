@@ -5,7 +5,7 @@
 	<div class="container padding-xs">
 		<div class="row">
 			<div class="col-lg-12">
-				<p><a href="{{ path_for('index') }}">Back to Homepage</a></p>
+				<p><a href="{{ path_for('getHome') }}">Back to Homepage</a></p>
 			</div>
 
 			<div class="col-lg-8">

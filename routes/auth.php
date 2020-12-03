@@ -21,7 +21,7 @@ $app->group('/login', function() {
     $this->post('', AuthLoginController::class . ':postLogin')->setName('postLogin');
 });
 
-$app->get('/logout', AuthLogoutController::class . ':logout')->setName('logout');
+$app->get('/logout', AuthLogoutController::class . ':getLogout')->setName('getLogout');
 
 $app->group('/recover-password', function() {
     $this->get('', AuthRecoverPasswordController::class . ':getRecoverPassword')->setName('getRecoverPassword');

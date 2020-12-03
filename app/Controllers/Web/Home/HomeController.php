@@ -9,8 +9,8 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class HomeController extends BaseConstructor {
 	
-    public function index(ServerRequestInterface $request, ResponseInterface $response) {
-        return $this->view->render($response, 'pages/web/home/index.php');
+    public function getHome(ServerRequestInterface $request, ResponseInterface $response) {
+        return $this->view->render($response, 'pages/web/home/home.php');
     }
 	
 }

@@ -5,7 +5,7 @@
 	<div class="container padding-xs">
 		<div class="row justify-content-center">
 			<div class="col-lg-6">
-				<p><a href="{{ path_for('index') }}">Back to Homepage</a></p>
+				<p><a href="{{ path_for('getHome') }}">Back to Homepage</a></p>
 
 				<h2>Contact Page</h2>
 
@@ -13,7 +13,7 @@
 
 				{% include 'components/messages/messages.php' %}
 				
-				<form id="contact-form" action="{{ path_for('contactSubmit') }}" method="post" autocomplete="{{ config.app.autocomplete }}">
+				<form id="contact-form" action="{{ path_for('postContact') }}" method="post" autocomplete="{{ config.app.autocomplete }}">
 					<div class="form-row">
 						<div class="col-lg-6 mb-3">
 							<label>First Name <span class="red">*</span></label>

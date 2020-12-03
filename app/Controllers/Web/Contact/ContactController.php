@@ -12,11 +12,11 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class ContactController extends BaseConstructor {
 	
-    public function contact(ServerRequestInterface $request, ResponseInterface $response) {
+    public function getContact(ServerRequestInterface $request, ResponseInterface $response) {
         return $this->view->render($response, 'pages/web/contact/contact.php');
     }
 	
-    public function contactSubmit(ServerRequestInterface $request, ResponseInterface $response) {
+    public function postContact(ServerRequestInterface $request, ResponseInterface $response) {
         $ip = Filter::ip();
         /*
         $recaptcha = new ReCaptcha($this->config->get('recaptcha.invisible.secretKey'));
