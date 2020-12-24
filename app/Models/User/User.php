@@ -21,7 +21,8 @@ class User extends Model {
         'email_address',
         'email_address_verified',
         'password',
-        'token',
+		'hash',
+		'token',
         'active',
         'locked',
         'active_hash',
@@ -59,14 +60,15 @@ class User extends Model {
 		]);
 	}
 	
-	public function createLoginToken($token) {
+	public function createLoginToken($hash, $token) {
 		$this->update([
+			'hash' => $hash,
 			'token' => $token
 		]);
 	}
 	
 	public function removeLoginToken() {
-		$this->createLoginToken(null);
+		$this->createLoginToken(null, null);
 	}
 	
 	public function createLoginIp($ip) {

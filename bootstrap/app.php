@@ -9,14 +9,14 @@ use Base\View\Factory;
 use Noodlehaus\Config;
 use Base\Helpers\Input;
 use Base\Helpers\Token;
-use Base\Plugins\Select;
-use Base\Plugins\Upload;
+use Base\Helpers\Select;
 use Slim\Flash\Messages;
 use Base\Helpers\Permission;
 use Base\Services\Twilio\Sms;
 use Slim\Views\TwigExtension;
 use Base\Services\GDPR\MailChimp;
 use Base\Services\PHPMailer\Email;
+use Base\ErrorHandlers\ErrorHandler;
 use Illuminate\Pagination\Paginator;
 use Base\Services\Mail\Mailer\Mailer;
 use Base\Middleware\OfflineMiddleware;
@@ -29,7 +29,6 @@ use Dotenv\Exception\InvalidPathException;
 use Base\Services\NumberVerify\NumberVerify;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-//session_cache_limiter(getenv('SESSION_CACHE_LIMITER'));
 session_start();
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -151,10 +150,6 @@ $container['sms'] = function ($container) {
 
 $container['mailchimp'] = function ($container) {
     return new MailChimp($container);
-};
-
-$container['upload'] = function ($container) {
-    return new Upload($container);
 };
 
 $container['notFoundHandler'] = function ($container) {
