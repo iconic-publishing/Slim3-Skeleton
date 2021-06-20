@@ -656,7 +656,7 @@ class Upload {
                         $file = preg_replace('/^php:(.*)/i', '$1', $file);
                         if (!$file) $file = $_SERVER['HTTP_X_FILE_NAME'];
                         if (!$file) $file = 'unknown';
-                        $data = file_get_contents('php:
+                        $data = file_get_contents('php://input');
                         $this->log .= '<b>source is a PHP stream ' . $file . ' of length ' . strlen($data) . '</b><br />';
 
                     
